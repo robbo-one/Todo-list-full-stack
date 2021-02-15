@@ -16,6 +16,19 @@ router.get('/', (req, res) => {
     })
 })
 
+router.post('/', (req, res) => {
+  const todo = req.body
+  db.addTodo(todo)
+    .then(id => {
+      res.sendStatus(200)
+})
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({ message: 'Somthing went wrong' })
+  })
+})
+
+
 
 
 module.exports = router
