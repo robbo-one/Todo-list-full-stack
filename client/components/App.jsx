@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
+import { connect } from 'superagent'
 import AddTodo from './AddTodo'
 import Tasks from './Tasks'
 
-function App () {
+function App (props) {
   useEffect(() => {
 
   }, [])
@@ -21,4 +22,12 @@ function App () {
   )
 }
 
+// const mapStateToProps = (globalState) => {
+//   return {
+//     tasks : globalState.tasks
+//   }
+// }
+
+// export default connect(mapStateToProps)(App)
 export default App
+

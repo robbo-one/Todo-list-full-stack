@@ -1,27 +1,30 @@
 import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
 import { getTasks } from '../apis/tasks'
 // import AddTodo from './AddTodo'
 
-function Tasks () {
-  const [tasks, setTasks] = useState([])
+function Tasks (props) {
+  const t = props.tasks
+  // console.log(t)
 
-  useEffect(() => {
-    getTasks()
-    .then((list) => {
-      setTasks(...tasks, list)
-    })
+  // const [tasks, setTasks] = useState([])
+  // useEffect(() => {
+  //   getTasks()
+  //   .then((list) => {
+  //     setTasks(...tasks, list)
+  //   })
 
-  }, [])
+
+  // }, [])
 
   const handleChange = (evt) => {
-    
   }
 
 
   return (
     <>
       <ul className="todo-list">
-        {tasks.map(task => {
+        {t.map(task => {
           // console.log(task.task)
           return (
             <li key={task.id} className={task.completed == 'yes' ? 'completed' : ''}>
@@ -39,4 +42,10 @@ function Tasks () {
   )
 }
 
-export default Tasks
+const mapStateToProps = (globalState) => {
+  return {
+    tasks : globalState.tasks
+  }
+}
+
+export default connect(mapStateToProps)(Tasks)
