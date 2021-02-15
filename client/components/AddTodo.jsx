@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import connect from 'react-redux'
 
 function AddTodo (props) {
   return (
@@ -8,4 +9,4 @@ function AddTodo (props) {
   )
 }
 
-export default AddTodo
+export default connect()(AddTodo)
