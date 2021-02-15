@@ -28,7 +28,14 @@ router.post('/', (req, res) => {
   })
 })
 
-
+router.patch('/:id',(req,res) => {
+  const id = req.params.id
+  const todo = req.body
+  db.updateTodo(id, todo.task, todo.priority, todo.completed)
+  .then(id => {
+    res.sendStatus(200)
+  })
+})
 
 
 module.exports = router
