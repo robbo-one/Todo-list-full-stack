@@ -24,7 +24,7 @@ function Tasks () {
         {tasks.map(task => {
           // console.log(task.task)
           return (
-            <li key={task.id}>
+            <li key={task.id} className={task.completed == 'yes' ? 'completed' : ''}>
             <div className="view">
               <input className="toggle" type="checkbox" />
               <label>{task.task}</label>

@@ -13,4 +13,18 @@ router.get('/', (req, res) => {
   })
 })
 
+router.post('/', (req, res) => {
+  // console.log(req.body)
+  db.addTask(req.body.task, req.body.priority)
+  .then(() => {
+    res.status(200)
+    return null
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500)
+  })
+})
+
+
 module.exports = router

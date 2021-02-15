@@ -5,6 +5,12 @@ function getTasks (db = connection) {
   .select()
 }
 
+function addTask (task, priority, db = connection) {
+  return db('tasks')
+  .insert({task: task, priority: priority, completed: 'no'})
+}
+
 module.exports = {
- getTasks
+ getTasks,
+ addTask
 }
