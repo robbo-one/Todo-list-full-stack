@@ -32,10 +32,17 @@ router.patch('/:id',(req,res) => {
   const id = req.params.id
   const todo = req.body
   db.updateTodo(id, todo.task, todo.priority, todo.completed)
-  .then(id => {
+  .then(() => {
     res.sendStatus(200)
   })
 })
 
+router.delete('/:id', (req,res) => {
+  const id = req.params.id
+  db.deleteTodo(id)
+    .then(()=>{
+      res.sendStatus(200)
+    })
+})
 
 module.exports = router
