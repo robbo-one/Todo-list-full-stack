@@ -22,3 +22,16 @@ export function addTask (task, priority) {
     return res.send(400)
   })
 }
+
+export function updateTask (id, newTask){
+  return request
+  .get(baseUrl)
+  .send({id : id, newTask : newTask})
+  .then(res => {
+    return res.send(200)
+  })
+  .catch(err => {
+    console.log(err)
+    return res.send(400)
+  })
+}

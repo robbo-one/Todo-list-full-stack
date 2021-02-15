@@ -26,5 +26,19 @@ router.post('/', (req, res) => {
   })
 })
 
+router.patch('/', (req, res) => {
+  db.updateTask(req.body.id, req.body.newTask)
+  .then(() => {
+    console.log('updated!')
+    res.status(200)
+    return null
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500)
+  })
+
+})
+
 
 module.exports = router
