@@ -18,7 +18,7 @@ const Todos = (props) => {
 				<ul className="todo-list">
 					{/* <!-- These are here just to show the structure of the list items --> */}
 					{/* <!-- List items should get the className `editing` when editing and `completed` when marked as completed --> */}
-					
+
 					{props.todos.map(todo => {
 						if (todo.completed === 1) {
 							return <li className="completed">
@@ -31,23 +31,37 @@ const Todos = (props) => {
 							</li>
 						} else {
 							return <li>
-							<div className="view">
-								<input className="toggle" type="checkbox" />
-								<label key={todo.id}>{todo.task}</label>
-								<button className="destroy"></button>
-							</div>
-							<input className="edit" value="Rule the web" />
-						</li>
+								<div className="view">
+									<input className="toggle" type="checkbox" />
+									<label key={todo.id}>{todo.task}</label>
+									<button className="destroy"></button>
+								</div>
+								<input className="edit" value="Rule the web" />
+							</li>
 						}
 					})}
-
-
-
-
-
-
 				</ul>
 			</section>
+
+			<footer className="footer">
+				{/* <!-- This should be `0 items left` by default --> */}
+				<span className="todo-count"><strong>0</strong> item left</span>
+				{/* <!-- Remove this if you don't implement routing --> */}
+				<ul className="filters">
+					<li>
+						<a className="selected" href="#/">All</a>
+					</li>
+					<li>
+						<a href="#/active">Active</a>
+					</li>
+					<li>
+						<a href="#/completed">Completed</a>
+					</li>
+				</ul>
+				{/* <!-- Hidden if no completed items are left ↓ --> */}
+				<button className="clear-completed">Clear completed</button>
+			</footer>
+
 		</>
 	)
 }
