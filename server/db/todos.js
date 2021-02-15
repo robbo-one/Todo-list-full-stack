@@ -7,10 +7,32 @@ function getTodos (db = connection) {
 
 function addTodo (newTodo, db = connection) {
   return db('todos')
-    .insert(newTodo)
+    .insert({
+      task: newTodo,
+      priority: 'low',
+      completed: false
+    })
+}
+
+function delTodo (id, db = connection) {
+  return db('todos')
+    .where('id', id)
+    .delete()
+}
+
+function updateTodo (todo, db = connection) {
+  return db('todos')
+    .where('id', todo.id)
+    .update({
+      task: todo.task,
+      priority: todo.priority,
+      completed: todo.completed
+    })
 }
 
 module.exports = {
   getTodos,
-  addTodo
+  addTodo,
+  delTodo,
+  updateTodo
 }
