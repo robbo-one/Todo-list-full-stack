@@ -20,8 +20,6 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   addTodo(req.body.todo)
     .then(() => {
-      console.log('item added')
-      // res.json({})
       res.sendStatus(200)
       return null
     })

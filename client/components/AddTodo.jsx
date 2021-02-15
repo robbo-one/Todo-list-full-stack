@@ -18,10 +18,8 @@ const keyPressed = (e) => {
 }
 
 const handleSubmit = (e) => {
-  console.log('enterpressed')
   props.dispatch(saveTodo(newTodo))
     .then (() => {
-      console.log('tada')
       props.dispatch(fetchTodos())
     })
 }
