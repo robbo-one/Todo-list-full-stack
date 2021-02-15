@@ -1,6 +1,6 @@
 
 exports.up = function(knex) {
-  return knex.schema.createTable('todo', (table) => {
+  return knex.schema.createTable('todos', (table) => {
     table.increments('id').primary()
     table.string('task')
     table.boolean('completed')
@@ -8,5 +8,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTable('todo')
+  return knex.schema.dropTable('todos')
 };

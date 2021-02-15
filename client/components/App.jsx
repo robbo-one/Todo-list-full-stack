@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { HashRouter as Router, Route } from 'react-router-dom'
 
 import AddTodo from './AddTodo'
+import ListOfTodos from './ListOfTodos'
 
 function App () {
   useEffect(() => {
@@ -13,7 +14,9 @@ function App () {
     <>
       <header className="header">
         <h1>todos</h1>
-        <AddTodo />
+        <ListOfTodos/>
+        <AddTodo/>
+
       </header>
       <section className="main"></section>
       <footer className="footer"></footer>

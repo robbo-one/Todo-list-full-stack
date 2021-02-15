@@ -20,9 +20,20 @@ function AddTodo (props) {
 
   return (
     <>
-      <input className="new-todo" placeholder="What needs to be done?" autoFocus={true} />
+      <form>
+        <label>
+           <input className="new-todo" type='text' name='comment' placeholder="Do the thing?" autoFocus={true} onChange={handleChange} />
+        </label>
+      </form>
+      <button>Add the task</button>
     </>
   )
 }
 
-export default AddTodo
+function mapStateToProps (globalState) {
+  return {
+    todos: globalState.todos
+  }
+}
+
+export default connect(mapStateToProps)(AddTodo)

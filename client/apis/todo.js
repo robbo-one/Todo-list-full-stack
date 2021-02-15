@@ -8,3 +8,10 @@ export function getTodos () {
     return res.body
   })
 }
+
+export function addTodos () {
+  return request.post(rootUrl + '/todos')
+  .then(res => {
+    return res.body
+  })
+}
