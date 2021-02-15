@@ -1,7 +1,7 @@
 const connection = require('./connection')
 
 function getTasks (db = connection) {
-  db('tasks')
+  return db('tasks')
   .select()
 }
 
