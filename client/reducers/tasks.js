@@ -1,4 +1,4 @@
-import { ADD_TASK, DEL_TASK, UPDATE_TASK} from "../actions"
+import { ADD_TASK, DEL_TASK, TASK_COMPLETE_TOGGLE, UPDATE_TASK} from "../actions"
 
 const initialState = [
   { id: 1, task: "Homework", priority: 1, completed: "no" },
@@ -20,11 +20,16 @@ const reducer = (state = initialState, action) => {
     case UPDATE_TASK:
       return state.map(task => {
         if (task.id == action.id){
-          // return {id: task.id, task: action.newTask, prority: task.priority, completed: task.completed}
           return {...task, task: action.newTask}
         } else {
           return task
         }
+      })
+    case TASK_COMPLETE_TOGGLE:
+      const status = action.completedStatus
+      const newStatus = status == 'no' ? "yes" : "no"
+      return state.map(task => {
+        return task.id == action.id ? {...task, completed: newStatus} : task
       })
     default:
       return state
