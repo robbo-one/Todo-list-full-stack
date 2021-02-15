@@ -4,7 +4,10 @@ const rootUrl = '/api/v1/todos'
 
 export function getTodos () {
   return request.get(rootUrl)
-    .then(res => res.body)
+    .then(res => {
+      console.log(res.body)
+      return res.body
+    })
 }
 
 export function addNewTodo (newTodo) {
@@ -19,5 +22,11 @@ export function addNewTodo (newTodo) {
 export function delTodo (id) {
   return request.delete(rootUrl)
     .send( { id: id } )
+    .then(res => res.body)
+}
+
+export function patchTodo (todo) {
+  return request.patch(rootUrl)
+    .send(todo)
     .then(res => res.body)
 }

@@ -1,17 +1,29 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import { fetchTodos, removeTodo } from '../actions'
+import { fetchTodos, removeTodo, changeTodo } from '../actions'
 
 const TodoList = (props) => {
+  const [ checkbox, setCheckbox ] = useState(false)
 
   useEffect(() => {
     props.dispatch(fetchTodos())
   }, [])
 
+  
+
   const handleDestroy = (id) => {
     props.dispatch(removeTodo(id))
       .then(() => {
+        props.dispatch(fetchTodos())
+      })
+  }
+
+  const handleCheckbox = (todo) => {
+    setCheckbox(!checkbox)
+    todo.completed = checkbox
+    props.dispatch(changeTodo(todo))
+      .then(()=> {
         props.dispatch(fetchTodos())
       })
   }
@@ -21,9 +33,16 @@ const TodoList = (props) => {
     <ul className="todo-list">
           {props.todos.map(todo => {
             return (
-              <li key={todo.id}>
+              <li key={todo.id}
+                className={ todo.completed ? 'completed' : null }>
                 <div className="view">
-                  <input className="toggle" type="checkbox" />
+                  <input 
+                    className="toggle" 
+                    type="checkbox" 
+                    name="completed"
+                    defaultChecked={todo.completed}
+                    onChange={() => handleCheckbox(todo)}
+                  />
                   <label>{todo.task}</label>
                   <button 
                     className="destroy"
