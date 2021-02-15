@@ -20,7 +20,8 @@ const Todos = (props) => {
 					{/* <!-- List items should get the className `editing` when editing and `completed` when marked as completed --> */}
 
 					{props.todos.map(todo => {
-						if (todo.completed === 1) {
+						const completed = (todo.completed[0].toUpperCase() + todo.completed.substring(1))
+						if (completed == 'Yes') {
 							return <li className="completed">
 								<div className="view">
 									<input className="toggle" type="checkbox" checked />

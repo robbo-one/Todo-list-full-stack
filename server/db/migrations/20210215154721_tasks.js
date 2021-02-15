@@ -4,7 +4,7 @@ exports.up = (knex, Promise) => {
       table.increments('id').primary()
       table.string('task')
       table.integer('priority')
-      table.boolean('completed')
+      table.string('completed')
     })
   }
   
