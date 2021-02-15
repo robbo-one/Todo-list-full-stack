@@ -2,7 +2,7 @@
 //REST JSON API
 
 const express = require("express");
-const db = require("../db/db");
+const db = require("../db/todos");
 const router = express.Router();
 
 module.exports = router

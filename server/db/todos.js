@@ -12,3 +12,4 @@ function getTodos(db = connection) {
   return db("todos").select(); //will jump back to routes/tasks
   console.log(todos);
 }
+
