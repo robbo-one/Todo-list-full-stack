@@ -5,26 +5,26 @@ function getTasks(db = connection) {
     .select()
 }
 
-function addTasks(task, db = connection) {
+function addTask(task, priority, db = connection) {
   return db('tasks')
-    .insert({task: task})
+    .insert({task: task, priority: priority, completed: 'no'})
 }
 
-function updateTasks(newTask, db = connection) {
-  return db('tasks')
-    .where('id', newTask.id)
-    .first()
-}
-
-function deleteTasks(id, db = connection) {
+function updateTask(id, newTask, priority, db = connection) {
   return db('tasks')
     .where('id', id)
-    .first()
+    .update({task: newTask, priority: priority})
+}
+
+function deleteTask(id, db = connection) {
+  return db('tasks')
+    .where('id', id)
+    .del()
 }
 
 module.exports = {
   getTasks,
-  addTasks,
-  updateTasks,
-  deleteTasks
+  addTask,
+  updateTask,
+  deleteTask
 }
