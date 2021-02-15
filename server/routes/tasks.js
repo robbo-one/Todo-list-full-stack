@@ -5,7 +5,7 @@ const db = require('../db/tasks')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  db.getTasks()
+  db.getTodos()
     .then(results => {
       res.json(results)
       return null
