@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { getTasks } from '../apis/tasks'
+import { deleteTask } from '../actions'
+
+// import { getTasks } from '../apis/tasks'
 // import AddTodo from './AddTodo'
 
 function Tasks (props) {
@@ -20,6 +22,10 @@ function Tasks (props) {
   const handleChange = (evt) => {
   }
 
+  const deleteClickHandler = (id) => {
+    props.dispatch(deleteTask(id))
+  }
+
 
   return (
     <>
@@ -31,7 +37,7 @@ function Tasks (props) {
             <div className="view">
               <input className="toggle" type="checkbox" />
               <label>{task.task}</label>
-              <button className="destroy"></button>
+              <button className="destroy" onClick={() => deleteClickHandler(task.id)}></button>
             </div>
             <input className="edit" value="Rule the web" onChange={handleChange}/>
           </li>
