@@ -7,13 +7,15 @@ function getTodos (db = connection) {
 
 function addTodo (todo, db = connection) {
   return db('todos')
-  .insert({todo: todo,})
+  .insert({'todo': todo, completed: 'false'})
+
 }
 
-function updateTodo (id, newTodo, db = connection) {
+
+function updateTodo (id, todo, db = connection) {
   return db('todos')
   .where('id', id)
-  .update({todo : newTodo})
+  .update(todo)
 }
 function deleteTodo (id, db = connection) {
   return db('todos')

@@ -7,23 +7,26 @@ export function getTodos (){
   .get(rootUrl)
   .then(res => {
     return res.body
-    .catch('bad getTodos')
   })
+  .catch('bad getTodos')
 }
 
 export function addTodo (todo) {
   return request
   .post(rootUrl)
   .send({todo : todo})
-  .then(res => 
-    res.body.todos)
+  .then(res => {
+    res.body.todos
+  })
   .catch('bad addTodos')
 }
 
 export function deleteTodo (id){
   return request
-  .delete(`${rootUrl}/${id}`)
-  .then(res =>res.body.todos)
+  .delete(rootUrl/todos.id)
+  .then(res => {
+  return res.body 
+})
   .catch('bad delete')
 }
 

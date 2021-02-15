@@ -7,8 +7,8 @@ const router = express.Router()
 
 router.get('/', (req, res) => {
   db.getTodos()
-  .then(results => {
-    res.json(results)
+  .then(todos => {
+    res.json(todos)
   })
   .catch(err => {
     console.log(err)
@@ -19,20 +19,19 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   db.addTodo(req.body.todo)
   .then(()=> {
-    res.json(id)
+    res.json(req.body)
+    // console.log(req.body)
     return null
   })
   .catch(err => {
-    console.log(err)
     res.status(500).json({ message: 'Somthing went wrong' })
   })
 })
 
 router.patch('/', (req, res) => {
-  db.updateTask(req.body.id, req.body.newTodo)
-  .then(() => {
-    console.log('updated!')
-    res.status(200)
+  db.updateTodo(req.body.id, req.body)
+  .then((data)=> {
+    res.json(data)
     return null
   })
   .catch(err => {
@@ -41,17 +40,14 @@ router.patch('/', (req, res) => {
   })
 })
 
-
 router.delete('/', (req, res) => {
   db.deleteTodo(req.body.id)
   .then(() => {
-    console.log('deleted!')
-    res.status(200)
-    return null
+      return null
   })
   .catch(err => {
     console.log(err)
-    res.status(500)
+    res.status(500).json ({ message: 'Somthing went wrong' })
   })
 })
 
