@@ -1,7 +1,5 @@
 const express = require('express')
-
 const db = require('../db/todos')
-
 const router = express.Router()
 
 
@@ -19,7 +17,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   db.addTodo(req.body.todo)
   .then(()=> {
-    res.json(id)
+    res.json()
     return null
   })
   .catch(err => {
@@ -28,12 +26,23 @@ router.post('/', (req, res) => {
   })
 })
 
-router.put('/', (req, res) => {
-  
-
+router.patch('/', (req, res) => {
+  // console.log(req.body)
+    db.updateTodo(req.body.id, req.body)
+  .then((data)=> {
+    res.json(data);
+  }).catch((err)=>{
+    res.json(err);
+  })
 })
 
-
-
+router.delete('/', (req, res) =>{
+  db.deleteTodo(req.body.id, req.body)
+  .then((data)=> {
+    res.json(data);
+  }).catch((err)=>{
+    res.json(err);
+  })
+})
 
 module.exports = router
