@@ -8,7 +8,7 @@ const server = express()
 server.use(express.json())
 server.use(express.static(path.join('server', 'public')))
 
-server.use('/api/', todoRoutes)
+server.use('/api/v1', todoRoutes)
 
 
 module.exports = server

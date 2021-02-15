@@ -28,9 +28,31 @@ router.post('/', (req, res) => {
   })
 })
 
-router.put('/', (req, res) => {
-  
+router.patch('/', (req, res) => {
+  db.updateTask(req.body.id, req.body.newTodo)
+  .then(() => {
+    console.log('updated!')
+    res.status(200)
+    return null
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json ({ message: 'Somthing went wrong' })
+  })
+})
 
+
+router.delete('/', (req, res) => {
+  db.deleteTodo(req.body.id)
+  .then(() => {
+    console.log('deleted!')
+    res.status(200)
+    return null
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500)
+  })
 })
 
 
