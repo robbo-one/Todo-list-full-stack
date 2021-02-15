@@ -12,7 +12,7 @@ export function getTasks () {
 
 export function addTask (task, priority) {
   return request
-  .get(baseUrl)
+  .post(baseUrl)
   .send({task : task, priority: priority})
   .then(res => {
     return res.send(200)
@@ -25,7 +25,7 @@ export function addTask (task, priority) {
 
 export function updateTask (id, newTask){
   return request
-  .get(baseUrl)
+  .patch(baseUrl)
   .send({id : id, newTask : newTask})
   .then(res => {
     return res.send(200)
@@ -38,8 +38,21 @@ export function updateTask (id, newTask){
 
 export function completeToggle (id, completedStatus){
   return request
-  .get(baseUrl + '/completed')
+  .patch(baseUrl + '/completed')
   .send({id : id, completedStatus : completedStatus})
+  .then(res => {
+    return res.send(200)
+  })
+  .catch(err => {
+    console.log(err)
+    return res.send(400)
+  })
+}
+
+export function deleteTask (id) {
+  return request
+  .del(baseUrl)
+  .send({id : id})
   .then(res => {
     return res.send(200)
   })

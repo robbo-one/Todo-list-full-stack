@@ -23,9 +23,16 @@ function completeToggle (id, completedStatus, db = connection) {
   .update({completed : status})
 }
 
+function deleteTask (id, db = connection) {
+  return db('tasks')
+  .where('id', id)
+  .del()
+}
+
 module.exports = {
  getTasks,
  addTask,
  updateTask,
- completeToggle
+ completeToggle,
+ deleteTask
 }
