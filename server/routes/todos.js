@@ -19,7 +19,10 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  
+  addTodos(req.body)
+    .then(id => {
+      
+    })
 })
 
 module.exports = router

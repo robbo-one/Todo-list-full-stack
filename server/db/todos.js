@@ -5,6 +5,12 @@ function getTodos (db = connection) {
     .select()
 }
 
+function addTodo (newTodo, db = connection) {
+  return db('todos')
+    .insert(newTodo)
+}
+
 module.exports = {
-  getTodos
+  getTodos,
+  addTodo
 }
