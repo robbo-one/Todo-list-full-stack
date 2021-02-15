@@ -1,4 +1,4 @@
-import { ADD_TASK, DEL_TASK} from "../actions"
+import { ADD_TASK, DEL_TASK, UPDATE_TASK} from "../actions"
 
 const initialState = [
   { id: 1, task: "Homework", priority: 1, completed: "no" },
@@ -17,6 +17,15 @@ const reducer = (state = initialState, action) => {
       ]
     case DEL_TASK:
       return state.filter(task => task.id != action.id)
+    case UPDATE_TASK:
+      return state.map(task => {
+        if (task.id == action.id){
+          // return {id: task.id, task: action.newTask, prority: task.priority, completed: task.completed}
+          return {...task, task: action.newTask}
+        } else {
+          return task
+        }
+      })
     default:
       return state
   }

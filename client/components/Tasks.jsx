@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { deleteTask } from '../actions'
+import { deleteTask, updateTask } from '../actions'
 
 // import { getTasks } from '../apis/tasks'
 // import AddTodo from './AddTodo'
@@ -19,13 +19,27 @@ function Tasks (props) {
 
   // }, [])
 
-  const handleChange = (evt) => {
-  }
-
   const deleteClickHandler = (id) => {
     props.dispatch(deleteTask(id))
   }
 
+  const doubleClickHandler = (evt) => {
+    evt.target.parentNode.parentNode.className = 'editing'
+  }
+
+  const keyDownHandler = (evt, id) => {
+    if (evt.keyCode == 13) {
+      // console.log(evt.target.value)
+      props.dispatch(updateTask(id, evt.target.value))
+      evt.target.value = ''
+      evt.target.parentNode.className = ''
+    }
+    if(evt.keyCode == 27) {
+      evt.target.value = ''
+      evt.target.parentNode.className = ''
+    }
+
+  }
 
   return (
     <>
@@ -36,10 +50,10 @@ function Tasks (props) {
             <li key={task.id} className={task.completed == 'yes' ? 'completed' : ''}>
             <div className="view">
               <input className="toggle" type="checkbox" />
-              <label>{task.task}</label>
+              <label onDoubleClick={doubleClickHandler}>{task.task}</label>
               <button className="destroy" onClick={() => deleteClickHandler(task.id)}></button>
             </div>
-            <input className="edit" value="Rule the web" onChange={handleChange}/>
+            <input className="edit" placeholder={task.task} onKeyDown={(evt) => keyDownHandler(evt, task.id)}/>
           </li>
         )
         })}

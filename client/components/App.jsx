@@ -31,5 +31,4 @@ const mapStateToProps = (globalState) => {
 }
 
 export default connect(mapStateToProps)(App)
-// export default App
 
