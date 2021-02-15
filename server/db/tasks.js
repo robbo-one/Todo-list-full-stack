@@ -16,8 +16,16 @@ function updateTask (id, newTask, db = connection) {
   .update({task : newTask})
 }
 
+function completeToggle (id, completedStatus, db = connection) {
+  const status = completedStatus == 'no' ? 'yes' : 'no'
+  return db('tasks')
+  .where('id', id)
+  .update({completed : status})
+}
+
 module.exports = {
  getTasks,
  addTask,
- updateTask
+ updateTask,
+ completeToggle
 }

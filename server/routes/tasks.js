@@ -37,7 +37,19 @@ router.patch('/', (req, res) => {
     console.log(err)
     res.status(500)
   })
+})
 
+router.patch('/completed', (req, res) => {
+  db.completeToggle(req.body.id, req.body.completedStatus)
+  .then(() => {
+    console.log('completed status updated!')
+    res.status(200)
+    return null
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500)
+  })
 })
 
 
