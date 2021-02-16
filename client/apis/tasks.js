@@ -15,7 +15,7 @@ export function postTask (task, priority) {
   .post(baseUrl)
   .send({task : task, priority: priority})
   .then(res => {
-    return res.send(200)
+    return null
   })
   .catch(err => {
     console.log(err)
@@ -28,7 +28,7 @@ export function changeTask (id, newTask){
   .patch(baseUrl)
   .send({id : id, newTask : newTask})
   .then(res => {
-    return res.send(200)
+    return null
   })
   .catch(err => {
     console.log(err)
@@ -41,7 +41,7 @@ export function completeToggle (id, completedStatus){
   .patch(baseUrl + '/completed')
   .send({id : id, completedStatus : completedStatus})
   .then(res => {
-    return res.send(200)
+    return null
   })
   .catch(err => {
     console.log(err)
@@ -54,7 +54,7 @@ export function delTask (id) {
   .del(baseUrl)
   .send({id : id})
   .then(res => {
-    return res.body
+    return null
   })
   .catch(err => {
     console.log(err)

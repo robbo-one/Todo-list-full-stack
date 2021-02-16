@@ -22,7 +22,7 @@ export const SET_TASKS = "SET_TASKS"
 // }
 
 export function fetchTasks() {
-  return (dispatch) => {
+  return dispatch => {
     return getTasks() //from api
       .then((tasks) => {
         console.log("fetching tasks")
@@ -47,7 +47,7 @@ export function deleteTask(id) {
   return dispatch => {
     return delTask(id)
       .then(() => {
-        dispatch.fetchTasks()
+        dispatch(fetchTasks())
         return null
       })
   }
