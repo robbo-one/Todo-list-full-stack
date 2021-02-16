@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { deleteTodo } from '../apis'
+import { deleteTodoAction } from '../actions'
+// import { deleteTodo } from '../apis'
+import { connect } from 'react-redux'
 
 
 function DeleteTodos (props) {
@@ -20,7 +22,8 @@ function DeleteTodos (props) {
 
   const handleDelete = (e) => {
     // console.log(e.target)
-    deleteTodo(todo)
+    // deleteTodo(todo)
+    props.dispatch(deleteTodoAction(todo))
     
     // setTodoDelete()
   }
@@ -28,8 +31,8 @@ function DeleteTodos (props) {
 
   return (
       //delete
-    <button className="destroy" onClick={(e) => handleDelete(e, todoDelete.id)}></button>
+    <button className="destroy" onClick={(e) => handleDelete(e, todo)}></button>
   )
 }
 
-export default DeleteTodos
+export default connect()(DeleteTodos)
