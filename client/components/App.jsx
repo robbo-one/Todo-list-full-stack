@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
-
+import { HashRouter as Router, Route } from 'react-router-dom' 
 
 import AddTodo from './AddTodo'
 import TodoList from './TodoList'
 import Footer from './Footer'
+import Nav from './Nav'
 
 
 function App () {
@@ -13,16 +14,19 @@ function App () {
 
   return (
     <>
-      <header className="header">
-        <h1>todos</h1>
-        <AddTodo />
-      </header>
-      <section className="main">
-        <TodoList />
-      </section>
-      <footer className="footer">
-        <Footer />
-      </footer>
+      <Router>
+        <Route path='/' component={Nav} />
+        <header className="header">
+          <h1>todos</h1>
+          <AddTodo />
+        </header>
+        <section className="main">
+          <Route path='/' component={TodoList} />         
+        </section>
+        <footer className="footer">
+          <Route path='/' component={TodoList} />
+        </footer>
+      </Router>
     </>
   )
 }
