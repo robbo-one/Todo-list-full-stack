@@ -4,7 +4,7 @@ exports.up = function(knex) {
   return knex.schema.createTable("task", table => {
     table.increments("id")
     table.string("todoTask")
-    table.string("completed")
+    table.boolean("completed")
   });
 };
 
