@@ -4,6 +4,7 @@ import { fetchTodos } from '../actions'
 
 
 const Todos = (props) => {
+
 	useEffect(() => {
 		props.dispatch(fetchTodos())
 	}, [])
@@ -13,7 +14,7 @@ const Todos = (props) => {
 			{/* <!-- This section should be hidden by default and shown when there are todos --> */}
 			<section className="main">
 				<input id="toggle-all" className="toggle-all" type="checkbox" />
-				<label for="toggle-all">Mark all as complete</label>
+				<label htmlFor="toggle-all">Mark all as complete</label>
 
 				<ul className="todo-list">
 					{/* <!-- These are here just to show the structure of the list items --> */}

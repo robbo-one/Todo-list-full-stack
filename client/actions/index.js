@@ -1,6 +1,7 @@
 import { getTodos, addTodo, updateTodo, deleteTodo } from '../apis/tasks'
 
 export const SET_TODOS = 'SET_TODOS'
+export const ADD_TODO = 'ADD_TODO'
 
 
 export function setTodos (todos) {
@@ -17,5 +18,15 @@ export function setTodos (todos) {
           dispatch(setTodos(todos))
           return null
         })
+    }
+  }
+
+  export function addTodo () {
+    return {
+      type: ADD_TODO,
+      id: id,
+      task: task,
+      priority: priority,
+      completed: completed
     }
   }
