@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { deleteTask, taskCompleteToggle, updateTask } from "../actions"
 import Task from "./Task"
-
+import { HashRouter as Router, Route } from "react-router-dom"
+import ActiveTasks from "./ActiveTasks"
+import CompletedTasks from "./CompletedTasks"
 
 function Tasks(props) {
   const t = props.tasks
@@ -33,14 +35,55 @@ function Tasks(props) {
     props.dispatch(taskCompleteToggle(id, completedStatus))
   }
 
-
   return (
     <>
       <ul className="todo-list">
         {t.map((task) => {
           //show tasks
           return (
-            <Task task={task} key={task.id} deleteClickHandler={deleteClickHandler} doubleClickHandler={doubleClickHandler} keyDownHandler={keyDownHandler} toggleClickHandler={toggleClickHandler}/>
+            <Router key={task.id}>
+              <Route
+                path="/"
+                exact
+                component={() => (
+                  <Task
+                    task={task}
+                    deleteClickHandler={deleteClickHandler}
+                    doubleClickHandler={doubleClickHandler}
+                    keyDownHandler={keyDownHandler}
+                    toggleClickHandler={toggleClickHandler}
+                  />
+
+                )}
+              />
+              <Route
+                path="/active"
+                exact
+                component={() => (
+                  <ActiveTasks
+                    task={task}
+                    deleteClickHandler={deleteClickHandler}
+                    doubleClickHandler={doubleClickHandler}
+                    keyDownHandler={keyDownHandler}
+                    toggleClickHandler={toggleClickHandler}
+                  />
+                  
+                )}
+              />
+              <Route
+                path="/completed"
+                exact
+                component={() => (
+                  <CompletedTasks
+                    task={task}
+                    deleteClickHandler={deleteClickHandler}
+                    doubleClickHandler={doubleClickHandler}
+                    keyDownHandler={keyDownHandler}
+                    toggleClickHandler={toggleClickHandler}
+                  />
+                )}
+              />
+            </Router>
           )
         })}
       </ul>
@@ -50,7 +93,7 @@ function Tasks(props) {
 
 const mapStateToProps = (globalState) => {
   return {
-    tasks: globalState.tasks
+    tasks: globalState.tasks,
   }
 }
 

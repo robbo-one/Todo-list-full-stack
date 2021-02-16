@@ -4,7 +4,7 @@ import AddTodo from './AddTodo'
 import Footer from './Footer'
 import Tasks from './Tasks'
 import ToggleAll from './ToggleAll'
-import { HashRouter as Router, Route } from 'react-router-dom'
+// import { HashRouter as Router, Route } from 'react-router-dom'
 
 function App (props) {
   useEffect(() => {
@@ -19,12 +19,8 @@ function App (props) {
       </header>
       <section className="main">
         <ToggleAll/>
-        <Router>
-          <Route path='/' exact component={Tasks} />
-          {/* <Tasks /> */}
-        </Router>
+          <Tasks />
       </section>
-      {/* <footer className="footer"></footer> */}
       <Footer/>
     </>
   )
