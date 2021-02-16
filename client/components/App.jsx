@@ -6,6 +6,7 @@ import TodoList from './TodoList'
 import Footer from './Footer'
 import Nav from './Nav'
 import Register from './Register'
+import SignIn from './SignIn'
 
 
 function App () {
@@ -23,7 +24,8 @@ function App () {
         </header>
         <section className="main">
           <Route path='/' exact component={TodoList} />  
-          <Route path='/signup' component={Register} />      
+          <Route path='/signup' component={Register} />  
+          <Route path='/signin' component={SignIn} />    
         </section>
         <footer className="footer">
           <Route path='/' component={Footer} />

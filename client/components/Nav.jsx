@@ -9,11 +9,11 @@ const Nav = () => {
   return (
     <div className='nav'>
       <IfAuthenticated>
-        <Link to='#'>Log Off</Link>
+        <Link to='#' onClick={logOff}>Log Off</Link>
       </IfAuthenticated> 
       <IfNotAuthenticated>
         <Link to='/signup'>Sign Up</Link>
-        <Link to='#'>Sign In</Link>
+        <Link to='/signin'>Sign In</Link>
       </IfNotAuthenticated>
     </div>
   )

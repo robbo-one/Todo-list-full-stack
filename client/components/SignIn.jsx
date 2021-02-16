@@ -1,39 +1,38 @@
 import React, { useState } from 'react'
-import { isAuthenticated, register } from 'authenticare/client' 
+import { signIn, isAuthenticated } from 'authenticare/client'
+
 import { baseApiUrl as baseUrl } from '../config'
-import { Redirect } from 'react-router-dom'
 
-const Register = (props) => {
-
+function SignIn (props) {
   const [form, setForm] = useState({
     username: '',
     password: ''
   })
 
-  const handleChange = (e) =>  {
+  function handleChange (e) {
+    const { name, value } = e.target
     setForm({
       ...form,
-      [e.target.name]: e.target.value
+      [name]: value
     })
   }
 
-  const handleClick = (e) => {
+  function handleClick (e) {
+    console.log('click handler')
     e.preventDefault()
     const { username, password } = form
-    console.log({ username, password }, baseUrl)
-    register({ username, password }, { baseUrl: baseUrl })
+    signIn({ username, password}, { baseUrl: baseUrl } )
       .then(() => {
+        console.log("authenticated")
         if(isAuthenticated()) {
-          console.log('authenticated')
           props.history.push('/')
         }
       })
   }
 
-
   return (
     <>
-      <h3>Sign up for some serious todo-ing</h3>
+      <h3>Sign-in for some serious todo-ing</h3>
       <label>
         Username:
         <input type='text'
@@ -46,9 +45,10 @@ const Register = (props) => {
           name='password'
           onChange={handleChange} />
       </label>
-      <button onClick={handleClick}>Sign Up</button>
+      <button onClick={handleClick}>Sign In</button>
     </>
   )
+
 }
 
-export default Register
+export default SignIn 
