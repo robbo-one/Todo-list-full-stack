@@ -12,7 +12,7 @@ const Nav = () => {
         <Link to='#'>Log Off</Link>
       </IfAuthenticated> 
       <IfNotAuthenticated>
-        <Link to='#'>Sign Up</Link>
+        <Link to='/signup'>Sign Up</Link>
         <Link to='#'>Sign In</Link>
       </IfNotAuthenticated>
     </div>
