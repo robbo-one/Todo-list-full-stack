@@ -14,6 +14,10 @@ function Footer(props) {
     return t.find((task) => task.completed == "yes")
   }
 
+  const findHowManyActiveTasksLeft = () => {
+    return t.filter(task => task.completed == 'no')
+  }
+
   const clearCompleted = () => {
     t.map((task) => {
       if (task.completed == "yes") {
@@ -32,7 +36,7 @@ function Footer(props) {
       {t.length > 0 && (
         <footer className="footer">
           <span className="todo-count">
-            <strong>{t.length}</strong> items left
+            <strong>{findHowManyActiveTasksLeft().length}</strong> items left
           </span>
   
           <ul className="filters">
