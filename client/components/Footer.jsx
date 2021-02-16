@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getTodos } from '../apis'
 import {connect} from 'react-redux'
-import {clearCompletedTodos} from '../actions'
+import {clearCompletedTodos, deleteTodoAction} from '../actions'
 import { Link, Redirect } from 'react-router-dom'
 
 function Footer (props) {
@@ -33,17 +33,24 @@ function Footer (props) {
     }
 
     const handleClearComplete = () => {
-        console.log("this is the handleClearComplete")
-        props.dispatch(clearCompletedTodos())
+        // console.log("this is the handleClearComplete")
+        // console.log(completedTodos)
+        const compArr = props.todos.filter(todo => {
+          return todo.completed == 1
+        })
+        for(let i = 0; i < compArr.length; i++) {
+          props.dispatch(deleteTodoAction(compArr[i]))
+        }
+
     }
 
     const showAll = () => {
-        console.log("this is the showAll") 
+        // console.log("this is the showAll") 
         setAllTodos(props.todos)
     }
 
     const showActive = () => {
-        console.log("this is the showActive")
+        // console.log("this is the showActive")
         setActiveTodos(currentActiveTodos => {
           props.todos.map(todo => {
             if(todo.completed == 0) {
@@ -56,7 +63,7 @@ function Footer (props) {
     }
 
     const showCompleted = () => {
-        console.log("this is the showCompleted")
+        // console.log("this is the showCompleted")
         setCompletedTodos(currentCompletedTodos => {
           props.todos.map(todo => {
             if(todo.completed == 1) {
@@ -78,7 +85,7 @@ function Footer (props) {
 
           <ul className="filters">
             <li onClick={showAll}>
-                <Link to="/all">All</Link>
+                <Link to="/">All</Link>
             </li>
             <li onClick={showActive}>
                 <Link to="/active">Active</Link>
@@ -87,7 +94,7 @@ function Footer (props) {
                 <Link to="/completed">Completed</Link>
             </li>
           </ul>
-          <button onClick={handleClearComplete}className="clear-completed">Clear completed</button>
+          <button onClick={handleClearComplete}className="clear-completed"><Link to="/">Clear completed</Link></button>
 
       </footer>
     </>

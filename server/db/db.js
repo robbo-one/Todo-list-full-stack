@@ -35,9 +35,9 @@ function deleteTask(todo, db = connection) {
     return db('todos')
     .where("id",todo.id)
     .delete()
-    .then(deletedItems => {
-        console.log("items deleted: ", deletedItems)
-    })
+    // .then(deletedItems => {
+    //     console.log("items deleted: ", deletedItems)
+    // })
 }
 
 module.exports = {

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
+import AddTodo from './AddTodo'
+import Footer from './Footer'
+import ShowTodos from './ShowTodos'
+// import {fetchTodos} from '../actions'
 
 function All (props) {
   
-  useEffect(() => {
-    props.dispatch(fetchTodos())
-  }, [])
 
 
 

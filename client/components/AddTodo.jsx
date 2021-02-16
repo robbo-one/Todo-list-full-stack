@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 // import { Redirect } from 'react-router-dom'
 import { addTodo, getTodos } from '../apis'
+import { connect } from 'react-redux'
+import { addToDoAction } from '../actions'
 // import ShowTodos from './ShowTodos'
 
 function AddTodo (props) {
@@ -25,8 +27,9 @@ function AddTodo (props) {
   const handleSubmit = (e) => {
     e.preventDefault()
     // console.log(formData)
-    addTodo(formData)
-    setFormData("")
+    // addTodo(formData)
+    props.dispatch(addToDoAction(formData))
+    setFormData({task_details:""})
     //should call setTodos so that it will update page when enter is pressed
     // setRedirect(true)
   }
@@ -41,4 +44,4 @@ function AddTodo (props) {
   )
 }
 
-export default AddTodo
+export default connect()(AddTodo)

@@ -2,16 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { getTodos } from '../apis'
 import DeleteTodos from './DeleteTodos'
 import UpdateTodos from './UpdateTodos'
+import { connect } from 'react-redux'
 
-function ShowCompleted () {
+function ShowCompleted (props) {
 
   // const [refresh, setRefresh] = useState(false)
-  const [tasks, setTasks] = useState([])
+  const [completedTodos, setCompletedTodos] = useState([])
 
   useEffect(() => {
-    getTodos()
-    .then(remoteTodos => setTasks(remoteTodos))
-    .catch(err => setError(err.message))
+    setCompletedTodos(currentActiveTodos => {
+      return props.todos.filter(todo => {
+        return todo.completed == 1
+        })
+    })
   }, [])
 
   return (
@@ -19,7 +22,7 @@ function ShowCompleted () {
     <input id="toggle-all" className="toggle-all" type="checkbox" />
     <label htmlFor="toggle-all">Mark all as complete</label>
         <ul className="todo-list">
-      {tasks.map(task => {
+      {completedTodos.map(task => {
           return (
               <li className={task.completed == 1 ? "completed" : ""} 
               key={task.id}>
@@ -35,4 +38,10 @@ function ShowCompleted () {
   )
 }
 
-export default ShowCompleted
+const mapStateToProps = (globalState) => {
+  return {
+    todos: globalState.todos
+  }
+}
+
+export default connect(mapStateToProps)(ShowCompleted)

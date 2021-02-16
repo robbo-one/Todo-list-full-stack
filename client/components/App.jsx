@@ -6,6 +6,10 @@ import Footer from './Footer'
 import ShowTodos from './ShowTodos'
 import { connect } from 'react-redux'
 // import UpdateTodos from './UpdateTodos'
+import { Route } from 'react-router-dom'
+import All from './All'
+import Active from './Active'
+import Completed from './Completed'
 
 function App (props) {
   
@@ -19,16 +23,9 @@ function App (props) {
 
   return (
     <>
-      <header className="header">
-        <h1>todos</h1>
-        <AddTodo />
-      </header>
-      <section className="main">
-      <ShowTodos />
-      </section>
-      <footer className="footer">
-        <Footer />
-      </footer>
+      <Route path="/" exact component={All}/>
+      <Route path="/active" exact component={Active}/>
+      <Route path="/completed" exact component={Completed}/>
     </>
   )
 }

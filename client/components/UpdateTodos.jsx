@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { deleteTodo, updateTodo } from '../apis'
+import { updateTodoAction } from '../actions'
+import { connect } from 'react-redux'
 
 
 function UpdateTodos (props) {
@@ -22,7 +24,8 @@ function UpdateTodos (props) {
     // console.log(e.target)
     // setTodoUpdate(todo)
     // console.log(todoUpdate)
-    updateTodo(todo)
+    // updateTodo(todo)
+    props.dispatch(updateTodoAction(todo))
     // console.log(todo)
   }
 
@@ -39,4 +42,4 @@ function UpdateTodos (props) {
   )
 }
 
-export default UpdateTodos
+export default connect()(UpdateTodos)

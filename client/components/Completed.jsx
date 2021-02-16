@@ -3,12 +3,11 @@ import { connect } from 'react-redux'
 import AddTodo from './AddTodo'
 import Footer from './Footer'
 import ShowCompleted from './ShowCompleted'
+// import {fetchTodos} from '../actions'
 
-function All (props) {
+
+function Completed (props) {
   
-  useEffect(() => {
-    props.dispatch(fetchTodos())
-  }, [])
 
 
 
@@ -28,4 +27,4 @@ function All (props) {
   )
 }
 
-export default connect()(All)
+export default connect()(Completed)

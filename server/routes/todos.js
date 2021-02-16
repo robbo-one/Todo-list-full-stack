@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req,res) => {
-    console.log(req.body)
+    // console.log(req.body)
     db.addTask(req.body)
         .then(id => {
             db.getTaskById(id)
