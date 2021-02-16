@@ -22,17 +22,23 @@ export function getTodos() {
 //       //rec'd response from route, then send to addWidget.jsx component
 //   }
 
-
 //   export function addPost (post) {
 //     // convert the large paragraphs string into an array of paragraphs
 //     post.paragraphs = post.paragraphs.split('\n')
 //     return request.post('/v1/posts')
 //       .send(post)
 //       .then(res => {
-//         validateNoSnakeCase(res.body)
-//         validatePostResponse('POST', 'v1/posts', res.body)
 //         return res.body
 //       })
 //       .catch(errorHandler('POST', '/v1/posts'))
 //   }
-  
+
+// export function updateTodo(todo) {
+//   return request
+//     .patch(`/v1/todos/${todo.id}`)
+//     .send(todo)
+//     .then((res) => {
+//       return res.body;
+//     })
+//     .catch(errorHandler("PATCH", "/v1/posts/:id"));
+// }

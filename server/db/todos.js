@@ -6,6 +6,7 @@ const connection = require("knex")(config);
 module.exports = {
   getTodos,
   addTodo,
+  updateTodo
 };
 
 //Get a list of tasks. Will return array of objects
@@ -20,11 +21,17 @@ function addTodo(newTodo, db = connection) {
   return db("todos")
     .insert(newTodo) //append newTodo to db
     .then(() => {
-      //id is what is being returned.
+      //id by default is returned. could have id inside brackets. anon function - no need for parameters, just call
       return getTodos();
     });
   //I want to return this to the route so the route can pass to client
 }
 
-//Line 22 anon function is when you don't need to add parameters, you just call the function.
-//Remember that getTodos() needs to be called, not just returned
+//Update task, priority or completed field in a todo item when id is selected. returns id so that this can be retrieved
+function updateTodo(id, updatedTodo, db = connection) {
+  console.log(updateTodo)
+  return db("todos").update(updatedTodo).where("todos.id", id) 
+  .then(() => {
+    return getTodos()//jumps back to routes
+  })
+}

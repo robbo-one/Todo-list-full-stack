@@ -21,7 +21,15 @@ router.get("/", (req, res) => {
 
 //Add new todo - takes req body from form
 router.post("/", (req, res) => {
-  db.addTodo(req.body).then((todo) => {
-    res.json(todo); //pass updated todo list to client API
+  db.addTodo(req.body).then((todos) => {
+    res.json(todos); //pass updated todo list to client API
   });
 });
+
+//Patch route request to update todo. Req body includes ?id, task, priority, completed
+router.patch("/:id", (req, res) => {
+  db.updateTodo(req.params.id, req.body) //form only has title and content
+    .then((todos) => {
+        res.json(todos);
+      });
+    })
