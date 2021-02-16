@@ -9,7 +9,7 @@ const initialState = [
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_TASK: //
+    case ADD_TASK: //fix this later
       const l = state.length+1
       return [
         ...state,

@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import AddTodo from './AddTodo'
+import Footer from './Footer'
 import Tasks from './Tasks'
+import ToggleAll from './ToggleAll'
 
 function App (props) {
   useEffect(() => {
@@ -15,9 +17,11 @@ function App (props) {
         <AddTodo />
       </header>
       <section className="main">
+        <ToggleAll/>
         <Tasks />
       </section>
-      <footer className="footer"></footer>
+      {/* <footer className="footer"></footer> */}
+      <Footer/>
     </>
   )
 }
