@@ -1,4 +1,5 @@
 import React from 'react'
+import { updateTodo } from '../actions'
 
 import { connect } from 'react-redux'
 
@@ -7,10 +8,15 @@ import { connect } from 'react-redux'
 function UpdateTodo(props) {
 
     const todo = props.task
-    console.log(todo)
+ 
+    const handleDubClick = () => {
+        props.dispatch(updateTodo(todo))
+    }
+
+
     return (
         <>
-            <label onDoubleClick={() => window.alert('Double clicked!')} key={todo.id}>{todo.task}</label>
+            <label onDoubleClick={() => handleDubClick()} key={todo.id}>{todo.task}</label>
         </>
     )
 }

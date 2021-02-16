@@ -17,7 +17,7 @@ export function getTodos () {
       .catch(errorHandler('POST', '/v1/tasks'))
   }
 
-  export function updateTodo (todo) {
+  export function changeTodo (todo) {
     return request
       .patch(`${rootUrl}/${todo.id}`)
       .send(todo)
