@@ -44,7 +44,7 @@ function Tasks(props) {
     <>
       <ul className="todo-list">
       {/* THIS SHIT IS SO JANKY FIX IT LATER I GUESS I DUNNO SOMEONE HELP */}
-        {t.map((task) => {
+        {t.reverse().map((task) => {
           //show tasks
           return ( 
             <Router key={task.id}>
