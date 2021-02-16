@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import { fetchTasks } from '../actions'
 import AddTodo from './AddTodo'
 import Footer from './Footer'
 import Tasks from './Tasks'
@@ -8,7 +9,7 @@ import ToggleAll from './ToggleAll'
 
 function App (props) {
   useEffect(() => {
-
+    props.dispatch(fetchTasks())
   }, [])
 
   return (

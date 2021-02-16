@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { connect } from "react-redux"
-import { deleteTask, taskCompleteToggle, updateTask } from "../actions"
+import { deleteTask, fetchTasks, taskCompleteToggle, updateTask } from "../actions"
 import Task from "./Task"
 import { HashRouter as Router, Route } from "react-router-dom"
 import ActiveTasks from "./ActiveTasks"
@@ -8,6 +8,7 @@ import CompletedTasks from "./CompletedTasks"
 
 function Tasks(props) {
   const t = props.tasks
+  // console.log(t)
 
   const deleteClickHandler = (id) => {
     props.dispatch(deleteTask(id))

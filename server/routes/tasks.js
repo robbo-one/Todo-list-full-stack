@@ -55,7 +55,7 @@ router.patch('/completed', (req, res) => {
 router.delete('/', (req, res) => {
   db.deleteTask(req.body.id)
   .then(() => {
-    console.log('deleted!')
+    // console.log('deleted!')
     res.status(200)
     return null
   })
@@ -63,7 +63,7 @@ router.delete('/', (req, res) => {
     console.log(err)
     res.status(500)
   })
-
+  
 })
 
 

@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-import { addTask } from "../actions"
+import { addTask, fetchTasks } from "../actions"
 
 function AddTodo(props) {
   
