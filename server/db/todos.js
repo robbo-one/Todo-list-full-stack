@@ -14,22 +14,17 @@ function getTodos(db = connection) {
   console.log(todos);
 }
 
-//Append new todo to database and return updated todo list. id will be generated. inbound to database so use stringify
+//Append new todo to database and return updated todo list. id will be generated. inbound to database ?stringify
 function addTodo(newTodo, db = connection) {
   console.log(newTodo);
-  newTodo = JSON.stringify(newTodo);
   return db("todos")
-    .insert(newTodo) //append newWidget to db
-    .then("todos");
+    .insert(newTodo) //append newTodo to db
+    .then(() => {
+      //id is what is being returned.
+      return getTodos();
+    });
   //I want to return this to the route so the route can pass to client
 }
 
-//Add a new blog post and return newly created post. Title and para given, id, date and comment count automatically added. Inbound to database so use stringify.
-function addPost(post, db = connection) {
-  console.log(post);
-  post.paragraphs = JSON.stringify(post.paragraphs);
-  return db("posts")
-    .insert(post)
-    .debug()
-    .then((ids) => ids[0]); //returns id - jumps to back to routes.
-}
+//Line 22 anon function is when you don't need to add parameters, you just call the function.
+//Remember that getTodos() needs to be called, not just returned
