@@ -11,28 +11,29 @@ export function getTodos (){
   .catch('bad getTodos')
 }
 
-export function addTodo (todo) {
+export function addTodos (newTodo) {
   return request
   .post(rootUrl)
-  .send({todo : todo})
+  .send({ newTodo : todo })
   .then(res => {
-    res.body.todos
+    return res.body.todo
   })
   .catch('bad addTodos')
 }
 
-export function deleteTodo (id){
+export function deleteTodos (id){
   return request
-  .delete(rootUrl/todos.id)
+  .delete(rootUrl)
   .then(res => {
   return res.body 
 })
-  .catch('bad delete')
+.catch('bad delete')
 }
 
-export function updateTodo (todo){
+export function updateTodos (todo){
   return request.put(rootUrl)
   .patch(todo)
   .then(res => res.body.todos)
   .catch('bad update')
 }
+

@@ -1,25 +1,29 @@
-import { ADD_TODO, SET_TODOS } from "../actions"
+import { ADD_TODO, GET_TODO, DELETE_TODO, UPDATE_TODO } from "../actions"
 
 
-const initialState = [
-{id: 1, todo: "grow potatoes", completed:'false'},
-{id: 2, todo: "boil Potatoes", completed:'false'},
-{id: 3, todo: "mash Potatoes", completed:'false'}]
+const initialState = []
 
-console.log(todos)
+
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_TODOS:
+    case GET_TODO:
       return action.todos
     case ADD_TODO:
-      return [
-        ...state,
-        { todo: action.todo, completed: "false" },
-      ];
+      return [...state, action.todo]
+    case DELETE_TODO:
+      return state.filter(todo => todo.id !== action.id)
+    case UPDATE_TODO:
+      return state.map(todo => {
+        if (todo.id === action.todo.id) {
+          todo = action.todo
+        }
+      return todo
+        
+      })
     default:
       return state;
   }
-};
+}
 
 export default reducer

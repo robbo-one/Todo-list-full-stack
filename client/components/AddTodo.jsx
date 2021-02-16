@@ -1,11 +1,39 @@
-import React from 'react'
+import React, {useState} from 'react'
 
-function AddTodo (props) {
+import { connect } from 'react-redux'
+import { fetchTodos, saveTodo } from '../actions'
+
+function AddTodos (props) {
+  const [ newTodo, setNewTodo ] = useState('')
+
+const handleChange = (e) => {
+  setNewTodo(e.target.value)
+}
+  
+const keyPressed = (e) => {
+  if (e.key === 'Enter') {
+    handleSubmit(e)
+  }
+}
+
+const handleSubmit = (e) => {
+  props.dispatch(saveTodo(newTodo))
+    .then (() => {
+      props.dispatch(fetchTodos())
+    })
+}
+
+
   return (
     <>
-      <input className="new-todo" placeholder="What needs to be done?" autoFocus={true} />
+      <input className="new-todo" 
+      placeholder="What needs to be done?" 
+      autoFocus={true} 
+      onChange={handleChange}
+      onKeyPress={keyPressed}
+      />
     </>
   )
 }
 
-export default AddTodo
+export default connect()(AddTodos)
