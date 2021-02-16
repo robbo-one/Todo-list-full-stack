@@ -11,7 +11,7 @@ const reducer = (state = initialState, action) => {
         case SET_TASKS:
             return action.tasks
         case ADD_TASK:
-            return [...state, action.task]
+            return [...state, action .task]
         default:
             return state
     }
