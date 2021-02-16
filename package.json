@@ -75,6 +75,7 @@
     "webpack-cli": "^4.5.0"
   },
   "dependencies": {
+    "authenticare": "^0.4.8",
     "express": "^4.17.1",
     "knex": "^0.21.17",
     "pg": "^8.5.1",
