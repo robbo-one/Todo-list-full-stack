@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
   })
   .catch(err => {
     console.log(err)
-    res.status(500)
+    res.status(500).send('Database error: ', err.message)
   })
 })
 
@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
   })
   .catch(err => {
     console.log(err)
-    res.status(500)
+    res.status(500).send('Database error: ', err.message)
   })
 })
 
@@ -36,7 +36,7 @@ router.patch('/', (req, res) => {
   })
   .catch(err => {
     console.log(err)
-    res.status(500)
+    res.status(500).send('Database error: ', err.message)
   })
 })
 
@@ -49,7 +49,7 @@ router.patch('/completed', (req, res) => {
   })
   .catch(err => {
     console.log(err)
-    res.status(500)
+    res.status(500).send('Database error: ', err.message)
   })
 })
 
@@ -62,7 +62,7 @@ router.delete('/', (req, res) => {
   })
   .catch(err => {
     console.log(err)
-    res.status(500)
+    res.status(500).send('Database error: ', err.message)
   })
   
 })

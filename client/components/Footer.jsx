@@ -1,11 +1,14 @@
 import React, { useState } from "react"
 import { connect } from "react-redux"
-import { deleteTask } from "../actions"
+import { deleteTask, setFilter } from "../actions"
 
 function Footer(props) {
   const t = props.tasks
+  
 
-  const [selected, setSelected] = useState("All")
+  const [selected, setSelected] = useState(localStorage.getItem('filter'))
+  // let selected = localStorage.getItem('filter')
+  selected == undefined && setSelected(localStorage.setItem('filter', 'All'))
 
   const checkIfCompletedItemExists = () => {
     return t.find((task) => task.completed == "yes")
@@ -17,6 +20,11 @@ function Footer(props) {
         return props.dispatch(deleteTask(task.id))
       }
     })
+  }
+
+  const changeFilter = (f) => {
+    localStorage.setItem('filter', f)
+    setSelected(localStorage.getItem('filter'))
   }
 
   return (
@@ -32,7 +40,7 @@ function Footer(props) {
               <a
                 className={selected == "All" ? "selected" : ""}
                 href="#/"
-                onClick={() => setSelected("All")}
+                onClick={() => changeFilter('All')}
               >
                 All
               </a>
@@ -41,7 +49,7 @@ function Footer(props) {
               <a
                 className={selected == "Active" ? "selected" : ""}
                 href="#/active"
-                onClick={() => setSelected("Active")}
+                onClick={() => changeFilter('Active')}
               >
                 Active
               </a>
@@ -50,7 +58,7 @@ function Footer(props) {
               <a
                 className={selected == "Completed" ? "selected" : ""}
                 href="#/completed"
-                onClick={() => setSelected("Completed")}
+                onClick={() => changeFilter('Completed')}
               >
                 Completed
               </a>

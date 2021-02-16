@@ -19,7 +19,7 @@ export function postTask (task, priority) {
   })
   .catch(err => {
     console.log(err)
-    return res.send(400)
+    return res.status(400).send('Request error: ', err.message)
   })
 }
 
@@ -32,7 +32,7 @@ export function changeTask (id, newTask){
   })
   .catch(err => {
     console.log(err)
-    return res.send(400)
+    return res.status(400).send('Request error: ', err.message)
   })
 }
 
@@ -45,7 +45,7 @@ export function completeToggle (id, completedStatus){
   })
   .catch(err => {
     console.log(err)
-    return res.send(400)
+    return res.status(400).send('Request error: ', err.message)
   })
 }
 
@@ -58,6 +58,6 @@ export function delTask (id) {
   })
   .catch(err => {
     console.log(err)
-    return res.send(400)
+    return res.status(400).send('Request error: ', err.message)
   })
 }
