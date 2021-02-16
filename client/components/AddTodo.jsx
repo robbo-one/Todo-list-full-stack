@@ -18,6 +18,7 @@ const keyPressed = (e) => {
 }
 
 const handleSubmit = (e) => {
+  e.target.value = ''
   props.dispatch(saveTodo(newTodo))
     .then (() => {
       props.dispatch(fetchTodos())

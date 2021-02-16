@@ -27,7 +27,6 @@ const TodoList = (props) => {
   }
 
   const filterList = (filter, todos) => {
-    console.log(filter)
     switch (filter) {
       case 'all':
         return todos
