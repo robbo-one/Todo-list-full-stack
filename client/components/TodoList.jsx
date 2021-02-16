@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { fetchTodos, removeTodo, changeTodo } from '../actions'
 
 const TodoList = (props) => {
-  const [ checkbox, setCheckbox ] = useState(false)
+  // const [ checkbox, setCheckbox ] = useState(false)
 
   useEffect(() => {
     props.dispatch(fetchTodos())
@@ -20,9 +20,12 @@ const TodoList = (props) => {
   }
 
   const handleCheckbox = (todo) => {
-    setCheckbox(!checkbox)
-    todo.completed = checkbox
-    props.dispatch(changeTodo(todo))
+    // setCheckbox((currentState) => {
+    //   return !currentState
+    // })
+    const newTodo = {...todo, completed: !todo.completed}
+    // todo.completed = checkbox
+    props.dispatch(changeTodo(newTodo))
       .then(()=> {
         props.dispatch(fetchTodos())
       })
