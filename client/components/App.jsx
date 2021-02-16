@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import AddTodo from './AddTodo'
+import DeleteTodos from './DeleteTodos'
 import ShowTodos from './ShowTodos'
+import UpdateTodos from './UpdateTodos'
 
 function App () {
   

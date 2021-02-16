@@ -13,3 +13,15 @@ export function addTodo(todo) {
         .send(todo)
         .then(res => res.body)
 }
+
+export function updateTodo(todo){
+    return request.patch(baseUrl)
+        .send(todo)
+        .then(res => res.body)
+}
+
+export function deleteTodo(todo) {
+    return request.delete(baseUrl)
+    .send(todo)
+    .then(res => res.body)
+}

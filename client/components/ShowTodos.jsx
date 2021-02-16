@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getTodos } from '../apis'
+import DeleteTodos from './DeleteTodos'
+import UpdateTodos from './UpdateTodos'
 
 function ShowTodos () {
 
@@ -14,13 +16,14 @@ function ShowTodos () {
 
   return (
     <>
+        <ul className="todo-list">
       {tasks.map(task => {
           return (
-          <ul className="todo-list">
-              <li className="new-todo"key={task.id}>{task.task_details}</li>
-          </ul>
-          )
-      })}
+              <li className="new-todo" key={task.id}><UpdateTodos todo={task}/>{task.task_details}<DeleteTodos todo={task}/></li>
+              
+              )
+            })}
+            </ul>
     </>
   )
 }

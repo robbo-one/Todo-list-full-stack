@@ -9,6 +9,7 @@ function addTask(task, db = connection) {
     return db('todos')
     .insert({task_details: task.task_details, priority: 1, completed: 0})
     .then(ids => ids[0])
+    // .then(getTasks)
 }
 
 function getTaskById(id, db = connection) {
@@ -18,8 +19,30 @@ function getTaskById(id, db = connection) {
     .first()
 }
 
+function updateTask(todo, db = connection) {
+    return db('todos')
+    .update("completed", 1)
+    .where("id", todo.id)
+    .then(updatedItems => {
+        console.log("items updated: ", updatedItems)
+
+    })
+    // .then(getTasks)
+}
+
+function deleteTask(todo, db = connection) {
+    return db('todos')
+    .where("id",todo.id)
+    .delete()
+    .then(deletedItems => {
+        console.log("items deleted: ", deletedItems)
+    })
+}
+
 module.exports = {
     getTasks,
     addTask,
-    getTaskById
+    getTaskById,
+    updateTask,
+    deleteTask
 }
