@@ -14,6 +14,7 @@ export function fetchTasks () {  // What is happeneing here
   return dispatch => {
     return getTasks()
       .then(tasks => {
+          console.log('action bronson', tasks)
         dispatch(setTasks(tasks))
         return null
       })
