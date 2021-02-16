@@ -1,8 +1,7 @@
 
-import { getTodos, addTodo } from '../apis/tasks'
+import { getTodos, addTodo, deleteTodo } from '../apis/tasks'
 
 export const SET_TODOS = 'SET_TODOS'
-export const DEL_TODO = 'DEL_TODO'
 
 export function setTodos(todos) {
   return {
@@ -30,9 +29,11 @@ export function fetchUpdatedTodos(formData) {
   }
 }
 
-export function delTodo(id) {
-  return {
-    type: DEL_TODO,
-    id: id
-  }
+export function removeTodo (id) {
+  return dispatch => {
+    return deleteTodo(id)
+    .then( () => {
+      dispatch(fetchTodos()
+      )})
+}
 }

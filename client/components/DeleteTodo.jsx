@@ -1,5 +1,5 @@
 import React from 'react'
-import { delTodo } from '../actions'
+import {removeTodo } from '../actions'
 import { connect } from 'react-redux'
 
 
@@ -9,7 +9,7 @@ function DeleteTodo (props) {
     const id = props.id
 
     const handleClick = () => {
-        props.dispatch(delTodo(id))
+        props.dispatch(removeTodo(id))
     }
 
     return(
