@@ -5,7 +5,6 @@ import { deleteTask } from "../actions"
 function Footer(props) {
   const t = props.tasks
 
-  // const [active, setActive] = useState(['selected', '', ''])
   const [selected, setSelected] = useState("All")
 
   const checkIfCompletedItemExists = () => {
@@ -20,24 +19,14 @@ function Footer(props) {
     })
   }
 
-  // const handleSelect = (element) => {
-  //   if(element == 1){
-  //     setActive(['selected', '', ''])
-  //   } else if(element == 2){
-  //     setActive(['', 'selected', ''])
-  //   } else if(element == 3) {
-  //     setActive(['', '', 'selected'])
-  //   }
-  // }
-
   return (
     <>
       {t.length > 0 && (
         <footer className="footer">
           <span className="todo-count">
-            <strong>{t.length}</strong> item left
+            <strong>{t.length}</strong> items left
           </span>
-          {/* <!-- Remove this if you don't implement routing --> */}
+  
           <ul className="filters">
             <li>
               <a

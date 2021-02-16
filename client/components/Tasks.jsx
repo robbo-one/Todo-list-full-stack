@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { deleteTask, taskCompleteToggle, updateTask } from "../actions"
+import Task from "./Task"
 
 
 function Tasks(props) {
@@ -39,29 +40,7 @@ function Tasks(props) {
         {t.map((task) => {
           //show tasks
           return (
-            <li
-              key={task.id}
-              className={task.completed == "yes" ? "completed" : ""}
-            >
-              <div className="view">
-                <input readOnly
-                  className="toggle"
-                  type="checkbox"
-                  onClick={() => toggleClickHandler(task.id, task.completed)} //toggle complete
-                  checked={task.completed == "yes"}
-                />
-                <label onDoubleClick={doubleClickHandler}>{task.task}</label>
-                <button
-                  className="destroy"
-                  onClick={() => deleteClickHandler(task.id)} //delete task
-                ></button>
-              </div>
-              <input
-                className="edit"
-                placeholder={task.task}
-                onKeyDown={(evt) => keyDownHandler(evt, task.id)} //edit task
-              />
-            </li>
+            <Task task={task} key={task.id} deleteClickHandler={deleteClickHandler} doubleClickHandler={doubleClickHandler} keyDownHandler={keyDownHandler} toggleClickHandler={toggleClickHandler}/>
           )
         })}
       </ul>
