@@ -25,7 +25,7 @@ const Todo = (props) => {
   }
 
   const handleDoubleClick = () => {
-    setIsEditing(true)
+    setIsEditing(!isEditing)
   }
 
   const handleChange = (e) => {
@@ -66,7 +66,8 @@ const Todo = (props) => {
           {todo.task}
         </label> :
         <input type='text' 
-          placeholder={todo.task} 
+          placeholder={todo.task}
+          onDoubleClick={handleDoubleClick} 
           onChange={handleChange}
           onKeyPress={(e) => keyPressed(todo, e)}/>
         }
