@@ -6,20 +6,21 @@ function DeleteTodos (props) {
   const todo = props.todo
 //   console.log(todo)
   // const [refresh, setRefresh] = useState(false)
-  const [todoDelete, setTodoDelete] = useState({id:74})
+  // const [todoDelete, setTodoDelete] = useState(null)
   
-  useEffect(() => {
+  // useEffect(() => {
 
-  }, [])
+  // }, [])
 
-  const doDelete = () => {
-      if(todo.id == todoDelete.id) {
-          deleteTodo(todo)
-      }
-  }
+  // const doDelete = () => {
+  //     if(todo.id == todoDelete.id) {
+  //         deleteTodo(todo)
+  //     }
+  // }
 
   const handleDelete = (e) => {
-    console.log(e.target)
+    // console.log(e.target)
+    deleteTodo(todo)
     
     // setTodoDelete()
   }

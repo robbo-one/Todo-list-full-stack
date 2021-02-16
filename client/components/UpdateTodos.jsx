@@ -6,22 +6,24 @@ function UpdateTodos (props) {
   const todo = props.todo
 //   console.log(todo)
   // const [refresh, setRefresh] = useState(false)
-  const [todoUpdate, setTodoUpdate] = useState(null)
+  // const [todoUpdate, setTodoUpdate] = useState(null)
   
-  useEffect(() => {
+  // useEffect(() => {
 
-  }, [])
+  // }, [])
 
-  const doUpdate = () => {
-      if(todo.id == todoUpdate.id) {
-          deleteTodo(todo)
-      }
-  }
+  // const doUpdate = () => {
+  //     if(todo.id == todoUpdate.id) {
+  //         deleteTodo(todo)
+  //     }
+  // }
 
   const handleUpdate = (e, todo) => {
-    console.log(e.target)
-    setTodoUpdate(todo)
-    updateTodo(todoUpdate)
+    // console.log(e.target)
+    // setTodoUpdate(todo)
+    // console.log(todoUpdate)
+    updateTodo(todo)
+    // console.log(todo)
   }
 
 

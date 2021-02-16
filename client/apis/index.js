@@ -15,6 +15,7 @@ export function addTodo(todo) {
 }
 
 export function updateTodo(todo){
+    // console.log(todo)
     return request.patch(baseUrl)
         .send(todo)
         .then(res => res.body)

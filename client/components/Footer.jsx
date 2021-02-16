@@ -1,20 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import { getTodos } from '../apis'
+import {connect} from 'react-redux'
+import {clearCompletedTodos} from '../actions'
+import { Link, Redirect } from 'react-router-dom'
 
-function Footer () {
+function Footer (props) {
   
   // const [refresh, setRefresh] = useState(false)
-  const [todos, setTodos] = useState([])
-  const [count, setCount] = useState(0)
-  useEffect(() => {
-    //   console.log("before calling getTodos")
-    getTodos()
-        .then(remoteTodos => setTodos(remoteTodos))
-  },[] )
+  // const [todos, setTodos] = useState([])
+  // const [count, setCount] = useState(0)
+  // useEffect(() => {
+  //   //   console.log("before calling getTodos")
+  //   getTodos()
+  //       .then(remoteTodos => setTodos(remoteTodos))
+  // },[] )
+
+  const [activeTodos, setActiveTodos] = useState([])
+  const [completedTodos, setCompletedTodos] = useState([])
+  const [allTodos, setAllTodos] = useState([])
 
     function handleCount  ()  {
-        let count = todos.length
-        todos.map(todo => {
+        let count = props.todos.length
+        props.todos.map(todo => {
             if(todo.completed == 1) {
                 count--
             } else {
@@ -27,18 +34,38 @@ function Footer () {
 
     const handleClearComplete = () => {
         console.log("this is the handleClearComplete")
+        props.dispatch(clearCompletedTodos())
     }
 
     const showAll = () => {
         console.log("this is the showAll") 
+        setAllTodos(props.todos)
     }
 
     const showActive = () => {
         console.log("this is the showActive")
+        setActiveTodos(currentActiveTodos => {
+          props.todos.map(todo => {
+            if(todo.completed == 0) {
+            currentActiveTodos.push(todo)
+            return null
+            }
+          })
+          return currentActiveTodos
+        })
     }
 
     const showCompleted = () => {
         console.log("this is the showCompleted")
+        setCompletedTodos(currentCompletedTodos => {
+          props.todos.map(todo => {
+            if(todo.completed == 1) {
+            currentCompletedTodos.push(todo)
+            return null
+            }
+          })
+          return currentCompletedTodos
+        })
     }
 
 
@@ -51,13 +78,13 @@ function Footer () {
 
           <ul className="filters">
             <li onClick={showAll}>
-                All
+                <Link to="/all">All</Link>
             </li>
             <li onClick={showActive}>
-                Active
+                <Link to="/active">Active</Link>
             </li>
             <li onClick={showCompleted}>
-                Completed
+                <Link to="/completed">Completed</Link>
             </li>
           </ul>
           <button onClick={handleClearComplete}className="clear-completed">Clear completed</button>
@@ -67,4 +94,10 @@ function Footer () {
   )
 }
 
-export default Footer
+const mapStateToProps = (globalState) => {
+  return {
+    todos: globalState.todos
+  }
+}
+
+export default connect(mapStateToProps)(Footer)

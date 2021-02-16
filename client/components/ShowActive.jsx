@@ -3,7 +3,7 @@ import { getTodos } from '../apis'
 import DeleteTodos from './DeleteTodos'
 import UpdateTodos from './UpdateTodos'
 
-function ShowTodos () {
+function ShowActive () {
 
   // const [refresh, setRefresh] = useState(false)
   const [tasks, setTasks] = useState([])
@@ -35,4 +35,4 @@ function ShowTodos () {
   )
 }
 
-export default ShowTodos
+export default ShowActive

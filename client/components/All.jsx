@@ -1,15 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { fetchTodos } from '../actions'
-import AddTodo from './AddTodo'
-// import DeleteTodos from './DeleteTodos'
-import Footer from './Footer'
-import ShowTodos from './ShowTodos'
 import { connect } from 'react-redux'
-// import UpdateTodos from './UpdateTodos'
 
-function App (props) {
-  
-  // const [refresh, setRefresh] = useState(false)
+function All (props) {
   
   useEffect(() => {
     props.dispatch(fetchTodos())
@@ -33,4 +25,4 @@ function App (props) {
   )
 }
 
-export default connect()(App)
+export default connect()(All)
