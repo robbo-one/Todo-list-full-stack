@@ -5,19 +5,19 @@ function getTodos (db = connection) {
   .select()
 }
 
-function addTodo (todo, db = connection) {
+function addTodo (newTodo, db = connection) {
   return db('todos')
-  .insert({'todo': todo, completed: 'false'})
+  .insert({task: newTodo, completed: false })
 
 }
 
-
-function updateTodo (id, todo, db = connection) {
+function updateTodo (todo, db = connection) {
   return db('todos')
-  .where('id', id)
-  .update(todo)
+  .where('id', todo.id)
+  .update({task: todo.task, completed: todo.completed})
 }
-function deleteTodo (id, db = connection) {
+
+function delTodo (id, db = connection) {
   return db('todos')
   .where('id', id)
   .del()
@@ -28,5 +28,5 @@ module.exports = {
  getTodos,
  addTodo,
  updateTodo,
- deleteTodo
+ delTodo
 }

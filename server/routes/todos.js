@@ -7,8 +7,9 @@ const router = express.Router()
 
 router.get('/', (req, res) => {
   db.getTodos()
-  .then(todos => {
-    res.json(todos)
+  .then(results => {
+    res.json(results)
+    return null
   })
   .catch(err => {
     console.log(err)
@@ -19,8 +20,6 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   db.addTodo(req.body.todo)
   .then(()=> {
-    res.json(req.body)
-    // console.log(req.body)
     return null
   })
   .catch(err => {
@@ -29,9 +28,8 @@ router.post('/', (req, res) => {
 })
 
 router.patch('/', (req, res) => {
-  db.updateTodo(req.body.id, req.body)
-  .then((data)=> {
-    res.json(data)
+  db.updateTodo(req.body)
+  .then(()=> {
     return null
   })
   .catch(err => {
@@ -41,7 +39,7 @@ router.patch('/', (req, res) => {
 })
 
 router.delete('/', (req, res) => {
-  db.deleteTodo(req.body.id)
+  db.delTodo(req.body.id)
   .then(() => {
       return null
   })

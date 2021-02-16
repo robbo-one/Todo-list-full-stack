@@ -3,8 +3,9 @@ import React, {useState} from 'react'
 import { connect } from 'react-redux'
 import { fetchTodos, saveTodo } from '../actions'
 
-function AddTodos (props) {
-  const [ todo, setNewTodo ] = useState('')
+function AddTodo (props) {
+
+  const [ newTodo, setNewTodo ] = useState('')
 
 const handleChange = (e) => {
   setNewTodo(e.target.value)
@@ -17,7 +18,8 @@ const keyPressed = (e) => {
 }
 
 const handleSubmit = (e) => {
-  props.dispatch(saveTodo(todo))
+  e.target.value = ''
+  props.dispatch(saveTodo(newTodo))
     .then (() => {
       props.dispatch(fetchTodos())
     })
@@ -32,8 +34,9 @@ const handleSubmit = (e) => {
       onChange={handleChange}
       onKeyPress={keyPressed}
       />
+      
     </>
   )
 }
 
-export default connect()(AddTodos)
+export default connect()(AddTodo)

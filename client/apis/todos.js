@@ -1,6 +1,6 @@
 import request from 'superagent'
 
-const rootUrl = '/api/v1'
+const rootUrl = '/api/v1/todos'
 
 export function getTodos (){
   return request
@@ -8,32 +8,30 @@ export function getTodos (){
   .then(res => {
     return res.body
   })
-  .catch('bad getTodos')
 }
 
-export function addTodos (todo) {
+export function addNewTodo (newTodo) {
   return request
   .post(rootUrl)
-  .send({ todo : todo })
-  .then(res => {
-    return res.body
+  .send({ todo: newTodo })
+  .then(res => res.body) 
+  .catch(err => {
+    console.log(err)
   })
-  .catch('bad addTodos')
 }
 
-export function deleteTodos (id){
+export function delTodo (id){
   return request
-  .delete(`rootUrl/${id}`)
-  .then(res => {
-  return res.body 
-})
-.catch('bad delete')
+  .delete(rootUrl)
+  .send ({ id: id })
+  .then(res => res.body)
 }
 
-export function updateTodos (todo){
-  return request.put(rootUrl)
-  .patch(todo)
-  .then(res => res.body.todos)
-  .catch('bad update')
+
+export function patchTodo (todo){
+  return request
+  .patch(rootUrl)
+  .send(todo)
+  .then(res => res.body) 
 }
 

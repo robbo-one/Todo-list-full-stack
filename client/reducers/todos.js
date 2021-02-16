@@ -1,4 +1,4 @@
-import { ADD_TODO, GET_TODO, DELETE_TODO, UPDATE_TODO } from "../actions"
+import { ADD_TODO, SET_TODOS, DELETE_TODOS, UPDATE_TODO } from "../actions"
 
 
 const initialState = []
@@ -7,11 +7,11 @@ const initialState = []
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_TODO:
+    case SET_TODOS:
       return action.todos
     case ADD_TODO:
       return [...state, action.todo]
-    case DELETE_TODO:
+    case DELETE_TODOS:
       return state.filter(todo => todo.id !== action.id)
     case UPDATE_TODO:
       return state.map(todo => {

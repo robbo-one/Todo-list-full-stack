@@ -1,29 +1,29 @@
-import { getTodos, addTodos, deleteTodos, updateTodos } from '../apis/todos'
+import { getTodos, addNewTodo, delTodo, patchTodo } from '../apis/todos'
 
 
-export const GET_TODO = 'GET_TODO'
+export const SET_TODOS = 'SET_TODOS'
 export const ADD_TODO = 'ADD_TODO'
-export const DELETE_TODO = 'DELETE_TODO'
+export const DELETE_TODOS = 'DELETE_TODOS'
 export const UPDATE_TODO = 'UPDATE_TODO'
 
 
-export function getTodo (todos) {
+export function setTodos (todos) {
   return {
-    type: GET_TODO,
+    type: SET_TODOS,
     todos: todos
   }
 }
 
-export function addTodo (todo) {
+export function addTodos (newTodo) {
   return {
     type: ADD_TODO,
-    todo: todo
+    todo: newTodo
   }
 }
 
-export function deleteTodo (id) {
+export function deleteTodos (id) {
   return {
-    type: DELETE_TODO,
+    type: DELETE_TODOS,
     id: id
   }
 }
@@ -38,7 +38,7 @@ export function fetchTodos () {
   return dispatch => {
     return getTodos()
       .then(todos => {
-        dispatch(getTodo(todos))
+        dispatch(setTodos(todos))
         return null
       })
   }
@@ -46,9 +46,9 @@ export function fetchTodos () {
 
 export function saveTodo (todo) {
   return dispatch => {
-    return addTodos(todo)
+    return addNewTodo(todo)
       .then(res => {
-        dispatch(addTodo(odo))
+        dispatch(addTodos(todo))
         return null
       })
   }
@@ -56,9 +56,9 @@ export function saveTodo (todo) {
 
 export function removeTodo (id) {
   return dispatch => {
-    return deleteTodos(id)
+    return delTodo(id)
       .then(res => {
-        dispatch(deleteTodo(id))
+        dispatch(deleteTodos(id))
         return null
       })
   }
@@ -66,7 +66,7 @@ export function removeTodo (id) {
 
 export function changeTodo (todo) {
   return dispatch => {
-    return updateTodos(todo)
+    return patchTodo(todo)
       .then(res => {
         dispatch(updateTodo(todo))
         return null
