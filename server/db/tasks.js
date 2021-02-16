@@ -8,9 +8,19 @@ function getTasks(db = connection){
     .select()
 }
 
+function findTask(id, db = connection) {
+    return db('tasks')
+        .where('id', id)
+        .select()
+        .first()
+}
+
 function addTask(task, priority, db =connection){
     return db('tasks')
     .insert({task : task, priority : priority, completed : 'no'})
+    .then((ids) => {
+        return findTask(ids[0], db)
+    })
 }
 
 function updateTask (id, newTask, db =connection) {
@@ -25,15 +35,11 @@ function deleteTask (id, db = connection) {
     .del()
 }
 
-
-
-
-
-
 module.exports = {
     getTasks,
     addTask,
     updateTask,
-    deleteTask
+    deleteTask,
+
     
 }

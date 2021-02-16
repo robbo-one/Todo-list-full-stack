@@ -9,8 +9,8 @@ const router = express.Router()
 router.get('/', (req, res) => {
   db.getTasks()
     .then(results => {
-        console.log(results)
-      res.json({results})
+        console.log('route got', results)
+      res.json(results)
       return null
     })
     .catch(err => {
@@ -22,8 +22,8 @@ router.get('/', (req, res) => {
 //post all the tasks
 router.post('/', (req, res) => {
     db.addTask(req.body.task, req.body.priority)
-    .then(() => {
-        res.status(200).json({message: 'task'})
+    .then(addedTask => {
+        res.status(200).json(addedTask)
         return null
     })
     .catch(err => {
