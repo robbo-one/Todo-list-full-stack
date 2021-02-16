@@ -28,9 +28,10 @@ router.post('/', (req,res) => {
 })
 
 router.patch('/', (req, res) => {
+    // console.log(req.body)
     db.updateTask(req.body)
         .then(itemsUpdated => {
-            console.log(itemsUpdated)
+            // console.log(itemsUpdated)
             res.json(itemsUpdated)
         })
 })
@@ -38,7 +39,7 @@ router.patch('/', (req, res) => {
 router.delete('/', (req, res) => {
     db.deleteTask(req.body)
         .then(itemsDeleted => {
-            console.log(itemsDeleted)
+            // console.log(itemsDeleted)
             res.json(itemsDeleted)
         })
 })

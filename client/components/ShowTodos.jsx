@@ -16,14 +16,18 @@ function ShowTodos () {
 
   return (
     <>
+    <input id="toggle-all" className="toggle-all" type="checkbox" />
+    <label htmlFor="toggle-all">Mark all as complete</label>
         <ul className="todo-list">
       {tasks.map(task => {
           return (
-              <li className="new-todo" key={task.id}><UpdateTodos todo={task}/>{task.task_details}<DeleteTodos todo={task}/></li>
+              <li className="" key={task.id}><UpdateTodos todo={task}/><DeleteTodos todo={task}/></li>
               
               )
             })}
             </ul>
+      
+      {/* <Footer /> */}
     </>
   )
 }

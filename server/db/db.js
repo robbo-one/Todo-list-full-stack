@@ -20,8 +20,9 @@ function getTaskById(id, db = connection) {
 }
 
 function updateTask(todo, db = connection) {
+    console.logo(todo.completed)
     return db('todos')
-    .update("completed", 1)
+    .update({completed: todo.completed})
     .where("id", todo.id)
     .then(updatedItems => {
         console.log("items updated: ", updatedItems)

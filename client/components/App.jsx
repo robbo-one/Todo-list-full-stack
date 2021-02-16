@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import AddTodo from './AddTodo'
-import DeleteTodos from './DeleteTodos'
+// import DeleteTodos from './DeleteTodos'
+import Footer from './Footer'
 import ShowTodos from './ShowTodos'
-import UpdateTodos from './UpdateTodos'
+// import UpdateTodos from './UpdateTodos'
 
 function App () {
   
@@ -23,7 +24,9 @@ function App () {
       <section className="main">
       <ShowTodos />
       </section>
-      <footer className="footer"></footer>
+      <footer className="footer">
+        <Footer />
+      </footer>
     </>
   )
 }

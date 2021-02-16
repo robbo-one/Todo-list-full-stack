@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { deleteTodo } from '../apis'
+import { deleteTodo, updateTodo } from '../apis'
 
 
 function UpdateTodos (props) {
@@ -18,16 +18,19 @@ function UpdateTodos (props) {
       }
   }
 
-  const handleUpdate = (e) => {
+  const handleUpdate = (e, todo) => {
     console.log(e.target)
-    // setTodoUpdate()
+    setTodoUpdate(todo)
+    updateTodo(todoUpdate)
   }
 
 
   return (
     <div className="view">
         <input className="toggle" type="checkbox"
-            onClick={(e) => handleUpdate(e)} />
+            onChange={(e) => handleUpdate(e, todo)} 
+            checked={todo.completed}/>
+            <label>{props.todo.task_details}</label>
              {/* //, task.id, task.completed)} //toggle complete */}
     </div>
       
