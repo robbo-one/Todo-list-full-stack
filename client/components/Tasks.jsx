@@ -21,9 +21,13 @@ function Tasks(props) {
   const keyDownHandler = (evt, id) => {
     if (evt.keyCode == 13) {
       //enter
-      props.dispatch(updateTask(id, evt.target.value))
-      evt.target.value = ""
-      evt.target.parentNode.className = ""
+      if(evt.target.value == ''){
+        alert('task cannot be empty')
+      } else {
+        props.dispatch(updateTask(id, evt.target.value))
+        evt.target.value = ""
+        evt.target.parentNode.className = ""
+      }
     }
     if (evt.keyCode == 27) {
       //escape
