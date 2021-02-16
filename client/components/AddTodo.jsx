@@ -24,10 +24,11 @@ function AddTodo(props) {
 
   const handleEnter = (e) => {
     if(e.keyCode === 13){
-      // console.log(formData)
-     props.dispatch(fetchUpdatedTodos(formData))
-    // addTodo(formData)
-    //   .then(()=>{props.dispatch(fetchTodos())})
+      if(formData.task !== ""){
+        props.dispatch(fetchUpdatedTodos(formData))
+      } else {
+        alert("You must add something!")
+      }
   }}
 
   return (
