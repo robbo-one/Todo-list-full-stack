@@ -1,7 +1,11 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-const Footer = () => {
+import { fetchActiveTodos } from '../actions'
+
+const Footer = (props) => {
+
+
 
 return(
 <footer className="footer">
@@ -13,7 +17,7 @@ return(
         <a className="selected" href="#/">All</a>
     </li>
     <li>
-        <a href="#/tasks/active">Active</a>
+        <a onClick={props.dispatch(fetchActiveTodos())} href="#/tasks/active">Active</a>
     </li>
     <li>
         <a href="#/tasks/completed">Completed</a>

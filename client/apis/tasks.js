@@ -32,6 +32,14 @@ export function getTodos () {
       .catch(errorHandler('DELETE', '/v1/tasks'))
   }
 
+export function getActiveTodos () {
+  return request
+  .get(`${rootUrl}/active`)
+  .then(res => {return res.body})
+  .catch(errorHandler('GET', '/v1/tasks/active'))
+}
+
+
   function errorHandler (method, route) {
     return (err) => {
       if (err.message === 'Not Found') {
