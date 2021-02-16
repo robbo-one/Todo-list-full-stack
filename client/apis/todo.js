@@ -9,8 +9,9 @@ export function getTodos () {
   })
 }
 
-export function addTodos () {
+export function addTodos (todos) {
   return request.post(rootUrl + '/todos')
+  .send(todos)
   .then(res => {
     return res.body
   })

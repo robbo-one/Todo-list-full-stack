@@ -6,9 +6,9 @@ import AddTodo from './AddTodo'
 import ListOfTodos from './ListOfTodos'
 
 function App () {
-  useEffect(() => {
+  // useEffect(() => {
 
-  }, [])
+  // }, [])
 
   return (
     <>

@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 
+import {addTheTodos} from '../actions/index'
+
 function AddTodo (props) {
 
-  const [message, setMessage] = useState('')
-
   const[formData, setFormData] = useState({
-    task: ''
+    task: '',
+    // completed: false
   })
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    props.dispatch(addTheTodos({task: formData.task}))
+    console.log('submitted data')
+   }
 
   const handleChange = (e) => {
     setFormData(currentFormData => {
@@ -20,12 +27,12 @@ function AddTodo (props) {
 
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>
-           <input className="new-todo" type='text' name='comment' placeholder="Do the thing?" autoFocus={true} onChange={handleChange} />
+           <input className="new-todo" type='text' name='task' placeholder="Do the thing" autoFocus={true} onChange={handleChange} />
         </label>
+        <button type='submit'>Add the task</button>
       </form>
-      <button>Add the task</button>
     </>
   )
 }

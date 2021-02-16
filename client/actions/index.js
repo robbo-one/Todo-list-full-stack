@@ -9,25 +9,6 @@ export function setTodos(todos) {
     todos: todos
   }
 }
-
-export function addTodo(todos) {
-  return {
-    type: ADD_TODOS,
-    todos: todos,
-    id: id
-  }
-}
-
-export function addTheTodos(todos) {
-  return dispatch => {
-    return addTodos()
-    .then(todos => {
-      dispatch(addTodo(todos))
-      return null
-    })
-  }
-}
-
 export function fetchTodos () {
   return dispatch => {
     return getTodos()
@@ -36,5 +17,34 @@ export function fetchTodos () {
       return null
     })
   }}
+
+// instaid of calling this function The func below calls fetchTodos again to rerender the list and calls the db again
+
+// export function addTodo(todos) {
+//   return {
+//     type: ADD_TODOS,
+//     todos: todos,
+//   }
+// }
+
+export function addTheTodos(todos) {
+  return dispatch => {
+    return addTodos(todos)
+    .then(() => {
+      dispatch(fetchTodos())
+      return null
+    })
+  }
+}
+
+
+
+// {
+//   type: 'ADD_TODOS',
+//   id: 4,
+//   task: 'feed the goats',
+//   completed: true
+//   }
+
 
   

@@ -5,16 +5,15 @@ import {fetchTodos} from '../actions/index'
 
 function ListOfTodos (props) {
 
-    let tasks = props.dispatch
-
     useEffect(() => {
-        fetchTodos()
+       props.dispatch(fetchTodos())
     }, [])
 
     return(
         <>
             <ul>
-                {tasks.map(td => <li>{td.task}</li>)}
+                {props.todos.map(td => 
+                <li key={td.id}>{td.task}</li>)}
             </ul>
         </>
     )

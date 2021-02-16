@@ -7,7 +7,7 @@ const reducer = (state = initialState, action) => {
     case SET_TODOS:
       return action.todos
     case ADD_TODOS:
-      return action.todos
+      return [...state, {id: action.id, task: action.task, completed: action.completed}]
       default:
       return state
   }
