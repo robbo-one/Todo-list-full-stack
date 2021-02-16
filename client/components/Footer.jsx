@@ -36,7 +36,9 @@ function Footer(props) {
       {t.length > 0 && (
         <footer className="footer">
           <span className="todo-count">
-            <strong>{findHowManyActiveTasksLeft().length}</strong> items left
+            {findHowManyActiveTasksLeft().length == 1 
+            ? <><strong>1</strong> item left </>
+            : <><strong>{findHowManyActiveTasksLeft().length}</strong> items left</>}
           </span>
   
           <ul className="filters">
