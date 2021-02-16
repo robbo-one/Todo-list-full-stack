@@ -23,6 +23,21 @@ export function delTodo(todo) {
   }
 }
 
+// export function fetchWombats() {
+//   console.log('preparing the thunk (fetchWombats)')
+//   return dispatch => {
+//     console.log('running the thunk (fetchWombats)')
+//     getWombats()
+//       .then(wombats => {
+//         console.log('got the wombats')
+
+//         const wombatNames = wombats.map(wombat => {
+//           return wombat.name
+//         })
+//         dispatch(setWombats(wombatNames))
+//       })
+//   }
+// }
 
 
 //action add todos (ie multi) 
