@@ -6,8 +6,12 @@ function AddTodo(props) {
   
   const keyHandler = (evt) => {
     if (evt.keyCode == 13) {
-      props.dispatch(addTask(evt.target.value, 1))
-      evt.target.value = ""
+      if(evt.target.value == ''){
+        evt.target.placeholder = "mate, you gotta have something to do"
+      } else {
+        props.dispatch(addTask(evt.target.value, 1))
+        evt.target.value = ""
+      }
     }
   }
 

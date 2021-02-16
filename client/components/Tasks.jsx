@@ -38,9 +38,10 @@ function Tasks(props) {
   return (
     <>
       <ul className="todo-list">
+      {/* THIS SHIT IS SO JANKY FIX IT LATER I GUESS I DUNNO SOMEONE HELP */}
         {t.map((task) => {
           //show tasks
-          return (
+          return ( 
             <Router key={task.id}>
               <Route
                 path="/"
