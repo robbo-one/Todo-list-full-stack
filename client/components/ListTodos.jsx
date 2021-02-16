@@ -1,37 +1,38 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import  { getTasks } from '../apis/api'
+import  { fetchTasks } from '../actions'
 
-const ListTodos = () => {
+const ListTodos = (props) => {
+
   useEffect(() => {
-
+    props.dispatch(fetchTasks())
   }, [])
 
-  return(
+  return (
     <>
-      <ul class="todo-list">
-        <li class="completed">
-          <div class="view">
-            <input class="toggle" type="checkbox" checked />
-            <label>Taste JavaScript</label>
-            <button class="destroy"></button>
-          </div>
-          <input class="edit" value="Create a TodoMVC template" />
-        </li>
-        <li>
-          <div class="view">
-            <input class="toggle" type="checkbox" />
-            <label>Buy a unicorn</label>
-            <button class="destroy"></button>
-          </div>
-          <input class="edit" value="Rule the web" />
-        </li>
+      <ul className="todo-list">
+        {props.tasks.map(task => {
+          return (
+            <li key={task.id} className="completed">
+              <div className="view">
+                <input className="toggle" type="checkbox" />
+                <label>{task.task}</label>
+                <button className="destroy"></button>
+              </div>
+              <input className="edit" value="Create a TodoMVC template" />
+            </li>
+          )
+        })}
       </ul>
     </>
   )
 }
 
+const mapStateToProps = (globalState) => {
+  return {
+    tasks: globalState.tasks
+  }
+}
 
-
-export default connect()(ListTodos)
+export default connect(mapStateToProps)(ListTodos)

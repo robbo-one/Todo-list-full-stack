@@ -14,6 +14,7 @@ export const fetchTasks = () => {
   return dispatch => {
     return getTasks()
       .then(tasks => {
+        // console.log(tasks)
         dispatch(setTasks(tasks))
         return null
       })
@@ -31,7 +32,7 @@ export const newTask = (task, priority) => {
   return dispatch => {
     return addTask(task, priority)
       .then(task => {
-        dispatch(createTask(task))
+        dispatch(fetchTasks())
         return null
       })
   }

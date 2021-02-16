@@ -6,7 +6,8 @@ export function getTasks() {
   return request
 		.get(rootUrl)
 		.then(res => {
-			return res.body
+			console.log(res.body)
+			return res.body.tasks
 		})
 		.catch(err => {
 			console.log(err)
