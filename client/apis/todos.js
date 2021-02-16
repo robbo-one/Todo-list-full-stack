@@ -11,19 +11,19 @@ export function getTodos (){
   .catch('bad getTodos')
 }
 
-export function addTodos (newTodo) {
+export function addTodos (todo) {
   return request
   .post(rootUrl)
-  .send({ newTodo : todo })
+  .send({ todo : todo })
   .then(res => {
-    return res.body.todo
+    return res.body
   })
   .catch('bad addTodos')
 }
 
 export function deleteTodos (id){
   return request
-  .delete(rootUrl)
+  .delete(`rootUrl/${id}`)
   .then(res => {
   return res.body 
 })

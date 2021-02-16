@@ -14,10 +14,10 @@ export function getTodo (todos) {
   }
 }
 
-export function addTodo (newTodo) {
+export function addTodo (todo) {
   return {
     type: ADD_TODO,
-    todo: newTodo
+    todo: todo
   }
 }
 
@@ -46,9 +46,9 @@ export function fetchTodos () {
 
 export function saveTodo (todo) {
   return dispatch => {
-    return getTodos(todo)
+    return addTodos(todo)
       .then(res => {
-        dispatch(addTodo(todo))
+        dispatch(addTodo(odo))
         return null
       })
   }
