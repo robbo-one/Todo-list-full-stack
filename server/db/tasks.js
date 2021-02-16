@@ -31,11 +31,24 @@ function deleteTodo (id, db = connection){
   .delete()
 }
 
+function getActiveTodos(db=connection){
+  return db('tasks')
+  .where('completed', 'No')
+  .select()
+} 
+
+function getCompletedTodos(db=connection){
+  return db('tasks')
+  .where('completed', 'Yes')
+  .select()
+} 
 
 module.exports = {
   getTodos,
   addTodo,
   getTodo,
   updateTodo,
-  deleteTodo
+  deleteTodo,
+  getActiveTodos,
+  getCompletedTodos
 }

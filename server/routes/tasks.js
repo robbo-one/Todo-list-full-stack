@@ -4,6 +4,8 @@ const db = require('../db/tasks')
 
 const router = express.Router()
 
+
+
 router.get('/', (req, res) => {
   db.getTodos()
     .then(results => {
@@ -44,5 +46,22 @@ router.delete('/:id', (req,res) => {
       res.sendStatus(200)
     })
 })
+
+router.get('/active', (req,res) => {
+  db.getActiveTodos()
+  .then(results => {
+    res.json(results)
+    return null
+  })
+})
+
+router.get('/completed', (req,res) => {
+  db.getCompletedTodos()
+  .then(results => {
+    res.json(results)
+    return null
+  })
+})
+
 
 module.exports = router

@@ -10,7 +10,8 @@ function UpdateTodo(props) {
     const todo = props.task
  
     const handleDubClick = () => {
-        props.dispatch(updateTodo(todo))
+        // props.dispatch(updateTodo(todo))
+        console.log("click ID", todo.id)
     }
 
 
