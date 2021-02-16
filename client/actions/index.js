@@ -4,6 +4,14 @@ export const SET_TODOS = 'SET_TODOS'
 export const ADD_TODO = 'ADD_TODO'
 export const DELETE_TODOS = 'DELETE_TODOS'
 export const UPDATE_TODO = 'UPDATE_TODO'
+export const FILTER = 'FILTER'
+
+export function filter (filter) {
+  return {
+    type: FILTER,
+    filter: filter
+  }
+}
 
 
 export function setTodos (todos) {
@@ -73,3 +81,5 @@ export function changeTodo (todo) {
       })
   }
 } 
+
+
