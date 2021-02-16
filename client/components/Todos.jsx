@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { fetchTodos } from '../actions'
-
+import DeleteTodo from './DeleteTodo'
 
 const Todos = (props) => {
 
@@ -27,7 +27,7 @@ const Todos = (props) => {
 								<div className="view">
 									<input className="toggle" type="checkbox" checked />
 									<label key={todo.id}>{todo.task}</label>
-									<button className="destroy"></button>
+									<DeleteTodo id={todo.id}/>
 								</div>
 								<input className="edit" value="Create a TodoMVC template" />
 							</li>
@@ -36,7 +36,7 @@ const Todos = (props) => {
 								<div className="view">
 									<input className="toggle" type="checkbox" />
 									<label key={todo.id}>{todo.task}</label>
-									<button className="destroy"></button>
+									<DeleteTodo id={todo.id}/>
 								</div>
 								<input className="edit" value="Rule the web" />
 							</li>
