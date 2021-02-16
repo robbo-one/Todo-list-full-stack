@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { addTodo, getTodos } from "../apis/tasks"
+import { fetchUpdatedTodos } from '../actions'
+import { connect } from 'react-redux'
 
 function AddTodo(props) {
 
@@ -11,6 +12,7 @@ function AddTodo(props) {
 
   const handleChange = (e) => {
     setFormData(currentFormData => {
+      e.preventDefault()
       return {
         ...currentFormData,
         "task": e.target.value,
@@ -22,9 +24,10 @@ function AddTodo(props) {
 
   const handleEnter = (e) => {
     if(e.keyCode === 13){
-    addTodo(formData)
-    console.log("added")
-      .then(getTodos)
+      // console.log(formData)
+     props.dispatch(fetchUpdatedTodos(formData))
+    // addTodo(formData)
+    //   .then(()=>{props.dispatch(fetchTodos())})
   }}
 
   return (
@@ -34,4 +37,4 @@ function AddTodo(props) {
   )
 }
 
-export default AddTodo
+export default connect()(AddTodo)
