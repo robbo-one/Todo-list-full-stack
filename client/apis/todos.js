@@ -1,4 +1,5 @@
 import request from 'superagent'
+import { getAuthorizationHeader } from 'authenticare/client'
 
 const rootUrl = '/api/v1/todos'
 
@@ -12,6 +13,7 @@ export function getTodos () {
 
 export function addNewTodo (newTodo) {
   return request.post(rootUrl)
+    .set(getAuthorizationHeader())
     .send( { todo: newTodo} )
     .then(res => res.body)
     .catch(err => {

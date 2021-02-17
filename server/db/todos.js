@@ -5,12 +5,13 @@ function getTodos (db = connection) {
     .select()
 }
 
-function addTodo (newTodo, db = connection) {
+function addTodo (newTodo, user, db = connection) {
   return db('todos')
     .insert({
       task: newTodo,
       priority: 'low',
-      completed: false
+      completed: false,
+      added_by_user: user.id
     })
 }
 

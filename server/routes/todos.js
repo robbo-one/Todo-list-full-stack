@@ -1,5 +1,5 @@
 const express = require('express')
-const { withRouter } = require('react-router-dom')
+const { getTokenDecoder } = require('authenticare/server')
 
 const { getTodos, addTodo, delTodo, updateTodo } = require('../db/todos')
 
@@ -17,8 +17,9 @@ router.get('/', (req, res) => {
     })
 })
 
-router.post('/', (req, res) => {
-  addTodo(req.body.todo)
+router.post('/', getTokenDecoder(), (req, res) => {
+  const user = req.user
+  addTodo(req.body.todo, user)
     .then(() => {
       res.sendStatus(200)
       return null
