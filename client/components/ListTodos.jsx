@@ -1,13 +1,18 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import  { fetchTasks } from '../actions'
+import  { fetchTasks, delTask } from '../actions'
 
 const ListTodos = (props) => {
 
   useEffect(() => {
     props.dispatch(fetchTasks())
   }, [])
+
+  const handleDelete = id => {
+    console.log('delete')
+    props.dispatch(delTask(id))
+  }
 
   return (
     <>
@@ -18,7 +23,7 @@ const ListTodos = (props) => {
               <div className="view">
                 <input className="toggle" type="checkbox" />
                 <label>{task.task}</label>
-                <button className="destroy"></button>
+                <button className="destroy" onClick={() => handleDelete(task.id)}></button>
               </div>
               <input className="edit" value="Create a TodoMVC template" />
             </li>
