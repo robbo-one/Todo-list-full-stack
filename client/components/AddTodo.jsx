@@ -1,34 +1,47 @@
 //@ts-check
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { fetchTodos } from "../actions/index";
 
 
 function AddTodo (props) {
+  const [completed, setCompleted] = useState(false);
+
+function handleClick(e) {
+    e.preventDefault();
+    console.log(e.target.getAttribute("id"))
+    {props.todos.map(todo => {
+      todo.completed = true;
+    })}
+    setCompleted(!completed)
+   
+  }
+
 
   useEffect(() => {
     props.dispatch(fetchTodos())
   }, []);
-console.log(props)
+
+  // console.log(props)
+  // onClick={() => {setCompleted(!completed)}} className={completed === true ? "completed" : ""}
   return (
-    <>
     <div>
-        <div className="header">
+      <div className="header">
           <h1>todos</h1>
           <input className="new-todo" placeholder="What needs to be done?"/>
         </div>
         <ul className="todo-list">
           {props.todos.map(todo => {
-            // console.log(task.task)
+           
             return (
-              <li key={todo.id}>
+              <li key={todo.id} id={todo.id} onClick={handleClick} className={completed === true ? "completed" : ""}>
               <div className="view">
                 <input className="toggle" type="checkbox" />
                 <label>{todo.todoTask}</label>
                 <button className="destroy"></button>
               </div>
-              <input className="edit" value="Rule the web"/>
+              <input className="edit" />
             </li>
           )
           })}
@@ -48,12 +61,12 @@ console.log(props)
         </ul>
         <button className="clear-completed">Clear completed</button>
       </div>
-      </div>
-    </>
+    </div>
   )
 }
 
 const mapStateToProps = (globalState) => {
+  // console.log(globalState)
   return {
     todos: globalState.todos
   }
