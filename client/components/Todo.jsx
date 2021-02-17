@@ -42,10 +42,11 @@ const Todo = (props) => {
     e.target.value = ''
     const editedTodo = { ...todo, task: editTodo }
     props.dispatch(changeTodo(editedTodo))
-      .then(()=> {
-        setIsEditing(false)
-        props.dispatch(fetchTodos())
-      })
+    .then(()=> {
+      setIsEditing(false)
+      props.dispatch(fetchTodos())
+    })
+    
   }
 
 

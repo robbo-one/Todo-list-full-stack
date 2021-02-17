@@ -9,6 +9,7 @@ const TodoList = (props) => {
   const todos = props.todos
 
   useEffect(() => {
+    
     props.dispatch(fetchTodos())
   }, [])
 

@@ -5,8 +5,7 @@ import TodoList from './TodoList'
 
 function App () {
   useEffect(() => {
-
-  }, [])
+    }, [])
 
   return (
     <>

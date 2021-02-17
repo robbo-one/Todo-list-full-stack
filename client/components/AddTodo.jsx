@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { fetchTodos, saveTodo } from '../actions'
 
 function AddTodo (props) {
-
+  
   const [ newTodo, setNewTodo ] = useState('')
 
 const handleChange = (e) => {
@@ -18,7 +18,6 @@ const keyPressed = (e) => {
 }
 
 const handleSubmit = (e) => {
-  e.target.value = ''
   props.dispatch(saveTodo(newTodo))
     .then (() => {
       props.dispatch(fetchTodos())
@@ -28,13 +27,13 @@ const handleSubmit = (e) => {
 
   return (
     <>
-      <input className="new-todo" 
+      <input 
+      className="new-todo" 
       placeholder="What needs to be done?" 
       autoFocus={true} 
       onChange={handleChange}
       onKeyPress={keyPressed}
       />
-      
     </>
   )
 }
