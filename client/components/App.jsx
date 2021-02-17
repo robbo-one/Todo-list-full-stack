@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import AddTodo from './AddTodo'
+import TasksList from './Tasks'
 
 function App () {
   useEffect(() => {
@@ -11,7 +11,7 @@ function App () {
     <>
       <header className="header">
         <h1>todos</h1>
-        <AddTodo />
+        <TasksList />
       </header>
       <section className="main"></section>
       <footer className="footer"></footer>
