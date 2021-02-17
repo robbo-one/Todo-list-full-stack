@@ -1,5 +1,5 @@
 
-import { getTodos, addTodo, deleteTodo, changeTodo, getActiveTodos } from '../apis/tasks'
+import { getTodos, addTodo, deleteTodo, getCompletedTodos, getActiveTodos, deleteCompletedTodos } from '../apis/tasks'
 
 export const SET_TODOS = 'SET_TODOS'
 
@@ -51,8 +51,29 @@ export function removeTodo (id) {
 export function fetchActiveTodos () {
   return dispatch => {
     return getActiveTodos()
-    .then( () => {
-      dispatch(setTodos()
+    .then( todos => {
+      console.log(todos)
+      dispatch(setTodos(todos)
       )})
 }
 }
+
+export function fetchCompletedTodos () {
+  return dispatch => {
+    return getCompletedTodos()
+    .then( todos => {
+      console.log(todos)
+      dispatch(setTodos(todos)
+      )})
+}
+}
+
+export function clearCompletedTodos () {
+  return dispatch => {
+    return deleteCompletedTodos()
+    .then( () => {
+      dispatch(fetchTodos())
+    })
+  }
+}
+

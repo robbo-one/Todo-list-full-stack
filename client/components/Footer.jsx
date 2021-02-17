@@ -1,11 +1,9 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchActiveTodos } from '../actions'
+import { fetchActiveTodos, fetchCompletedTodos, fetchTodos, clearCompletedTodos } from '../actions'
 
 const Footer = (props) => {
-
-
 
 return(
 <footer className="footer">
@@ -14,17 +12,17 @@ return(
 {/* <!-- Remove this if you don't implement routing --> */}
 <ul className="filters">
     <li>
-        <a className="selected" href="#/">All</a>
+        <a onClick={() => props.dispatch(fetchTodos())} className="selected" href="#/">All</a>
     </li>
     <li>
-        <a onClick={props.dispatch(fetchActiveTodos())} href="#/tasks/active">Active</a>
+        <a onClick={() => props.dispatch(fetchActiveTodos())} href="#/tasks/active">Active</a>
     </li>
     <li>
-        <a href="#/tasks/completed">Completed</a>
+        <a onClick={() => props.dispatch(fetchCompletedTodos())} href="#/tasks/completed">Completed</a>
     </li>
 </ul>
 {/* <!-- Hidden if no completed items are left ↓ --> */}
-<button className="clear-completed">Clear completed</button>
+<button onClick={() => props.dispatch(clearCompletedTodos())} className="clear-completed">Clear completed</button>
 </footer>
 
 )
