@@ -2,22 +2,14 @@
 
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { fetchTodos } from "../actions/index";
+import { fetchTodos, setCompleted } from "../actions/index";
 
 
 function AddTodo (props) {
-  const [completed, setCompleted] = useState(false);
 
-function handleClick(e) {
-    e.preventDefault();
-    console.log(e.target.getAttribute("id"))
-    {props.todos.map(todo => {
-      todo.completed = true;
-    })}
-    setCompleted(!completed)
-   
+  function handleClick(e) {
+    props.dispatch(setCompleted(Number(e.target.getAttribute("id"))))
   }
-
 
   useEffect(() => {
     props.dispatch(fetchTodos())
@@ -33,11 +25,11 @@ function handleClick(e) {
         </div>
         <ul className="todo-list">
           {props.todos.map(todo => {
-           
+
             return (
-              <li key={todo.id} id={todo.id} onClick={handleClick} className={completed === true ? "completed" : ""}>
+              <li key={todo.id}  className={todo.completed === 1 ? "completed" : ""}>
               <div className="view">
-                <input className="toggle" type="checkbox" />
+                <input className="toggle" id={todo.id} type="checkbox" checked={todo.completed === 1} onChange={handleClick} />
                 <label>{todo.todoTask}</label>
                 <button className="destroy"></button>
               </div>
