@@ -21,14 +21,26 @@ function delTodo (id, db = connection) {
     .delete()
 }
 
-function updateTodo (todo, db = connection) {
+function updateTodo (todo, user, db = connection) {
   return db('todos')
     .where('id', todo.id)
-    .update({
-      task: todo.task,
-      priority: todo.priority,
-      completed: todo.completed
+    .first()
+    .then(todo => authorizeUpdate(todo, user))
+    .then(() => {
+      return db('todos')
+        .where('id', todo.id)
+        .update({
+          task: todo.task,
+          priority: todo.priority,
+          completed: todo.completed
+        })
     })
+}
+
+function authorizeUpdate (fruit, user) {
+  if (fruit.added_by_user !== user.id) {
+    throw new Error('Unauthorized')
+  }
 }
 
 module.exports = {

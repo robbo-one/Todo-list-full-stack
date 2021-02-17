@@ -43,9 +43,10 @@ router.delete('/', (req, res) => {
     })
 })
 
-router.patch('/', (req, res) => {
+router.patch('/', getTokenDecoder(), (req, res) => {
   const todo = req.body
-  updateTodo(todo)
+  const user = req.user
+  updateTodo(todo, user)
     .then(() => {
       res.sendStatus(200)
       return null

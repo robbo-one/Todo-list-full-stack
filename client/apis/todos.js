@@ -29,6 +29,7 @@ export function delTodo (id) {
 
 export function patchTodo (todo) {
   return request.patch(rootUrl)
+    .set(getAuthorizationHeader())
     .send(todo)
     .then(res => res.body)
 }
