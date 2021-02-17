@@ -2,6 +2,7 @@ import { getTasks, addTask } from '../apis/tasks'
 
 export const SET_TASKS = 'SET_TASKS'
 export const ADD_TASK = 'ADD_TASK'
+export const UPDATE_TASK ='UPDATE_TASK'
 
 export function setTasks (tasks) {
   return {
@@ -28,13 +29,38 @@ export function createTask(task) {
     }
 }
 
+export function updateTodo (task) {
+    return {
+      type: UPDATE_TASK,
+      task: task
+    }
+  }
+
 export function newTask (task, priority){
     return dispatch => {
         return addTask(task,priority)
             .then(task => {
-                console.log('action task', task)
+                console.log('action new task', task)
                 dispatch(createTask(task))
                 return null
             })
     }
 }
+
+export function updateTask (id, newTask) {
+    return dispatch => {
+        return addTask(task,priority)
+        .then(task => {
+            console.log('update tasks'),
+            dispatch(createTask(task))
+            return null})
+
+    }
+}
+
+export function deleteTask (id) {
+    return {
+        type: DELETE_TASK,
+        id: id
+    }
+  }
