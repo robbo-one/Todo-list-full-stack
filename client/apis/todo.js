@@ -16,3 +16,10 @@ export function addTodos (todos) {
     return res.body
   })
 }
+
+export function deleteTodos (id) {
+  return request.delete(rootUrl + '/todos/' + id)
+  .then(res => {
+    return res.body
+  })
+}

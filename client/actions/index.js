@@ -1,7 +1,8 @@
-import { getTodos, addTodos } from '../apis/todo'
+import { getTodos, addTodos, deleteTodos } from '../apis/todo'
 
 export const SET_TODOS = 'SET_TODOS'
 export const ADD_TODOS = 'ADD_TODOS'
+export const DELETE_TODOS = 'DELETE_TODOS'
 
 export function setTodos(todos) {
   return {
@@ -37,7 +38,15 @@ export function addTheTodos(todos) {
   }
 }
 
-
+export function deleteTheTodos(id) {
+  return dispatch => {
+    return deleteTodos(id)
+    .then(result => {
+      dispatch(fetchTodos())
+      return null
+    })
+  }
+}
 
 // {
 //   type: 'ADD_TODOS',

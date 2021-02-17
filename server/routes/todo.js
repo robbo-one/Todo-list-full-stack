@@ -22,17 +22,29 @@ router.post('/', (req, res) => {
     task: req.body.task,
     completed: req.body.completed
   }
-
   db.addTodo(todo)
   .then(results => {
     console.log(results)
     res.json({results: results})
     return null
   })
-
   .catch(err => {
     console.log(err)
     res.status(500).json({message: 'Hefe ate all the cheese feelsbadman'})
+  })
+})
+
+router.delete('/:id', (req, res) => {
+  const id = req.params.id
+  db.deleteTodo(id)
+  .then(results => {
+    console.log('routes', results)
+    res.json({deletedRows: results})
+    return null
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({message: 'SHEEEITTT'})
   })
 })
 

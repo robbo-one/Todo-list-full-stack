@@ -10,7 +10,16 @@ function addTodo (todo, db = connection) {
   .then(ids => ids[0])
 }
 
+function deleteTodo (id, db = connection) {
+  return db('todos').delete().where('id', id)
+  .then(rowCount => {
+    console.log(rowCount)
+    return rowCount
+  })
+}
+
 module.exports = {
   getTodo,
-  addTodo
+  addTodo,
+  deleteTodo
 }
