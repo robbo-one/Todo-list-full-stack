@@ -10,19 +10,19 @@ router.get('/', (req, res) => {
   })
   .catch(err => {
     console.log(err)
-    res.status(500).json({ message: 'Somthing went wrong' })
+    res.status(500).json({ message: 'Something went wrong' })
   })
 })
 
 router.post('/', (req, res) => {
   db.addTodo(req.body.todo)
-  .then(()=> {
-    res.json()
+  .then(newTask => {
+    res.json(newTask)
     return null
   })
   .catch(err => {
     console.log(err)
-    res.status(500).json({ message: 'Somthing went wrong' })
+    res.status(500).json({ message: 'Something went wrong' })
   })
 })
 

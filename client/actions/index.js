@@ -1,20 +1,48 @@
+import { addTodo, getTodos } from '../apis/todos'
+
 export const ADD_TODO = 'ADD_TODO'
 export const DEL_TODO = 'DEL_TODO'
-export const SET_TODOS= 'SET_TODOS'
+export const GET_TODO = 'GET_TODO'
+// export const SET_TODOS= 'SET_TODOS'
 
-export function addTodo(todo) {
+export function addTodoToStore(todo) {
   return {
     type: ADD_TODO,
     todo: todo
   }
 }
-
-export function setTodos(todos){
-  return{ 
-   type: SET_TODOS,
-   todo: todos
+export function createTodo(todo) {
+  return dispatch => {
+    return addTodo({todo: todo})
+    .then(addedTodo => {
+      dispatch(addTodoToStore(addedTodo))
+      return null
+    })
   }
 }
+
+export function printTodos(todo){
+  return{
+    type: GET_TODO,
+    todo: todo
+  }
+}
+export function pullTodos(){
+  return dispatch =>{
+    return getTodos()
+    .then(todos => {
+      dispatch(printTodos(todos))
+      return null
+    })
+  } 
+}
+
+// export function setTodos(todos){
+//   return{ 
+//    type: SET_TODOS,
+//    todo: todos
+//   }
+// }
 
 export function delTodo(todo) {
   return {
@@ -22,22 +50,3 @@ export function delTodo(todo) {
     todo: todo
   }
 }
-
-// export function fetchWombats() {
-//   console.log('preparing the thunk (fetchWombats)')
-//   return dispatch => {
-//     console.log('running the thunk (fetchWombats)')
-//     getWombats()
-//       .then(wombats => {
-//         console.log('got the wombats')
-
-//         const wombatNames = wombats.map(wombat => {
-//           return wombat.name
-//         })
-//         dispatch(setWombats(wombatNames))
-//       })
-//   }
-// }
-
-
-//action add todos (ie multi) 

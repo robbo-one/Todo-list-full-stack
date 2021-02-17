@@ -6,14 +6,14 @@ export function getTodos (){
   return request.get(rootUrl)
   .then(res => {
     return res.body
-    .catch('bad getTodos')
   })
+  .catch('bad getTodos')
 }
 
 export function addTodo (todo) {
   return request.post(rootUrl)
   .send(todo)
-  .then(res => res.body.todos)
+  .then(res => res.body)
   .catch('bad addTodos')
 }
 
