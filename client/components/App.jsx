@@ -1,10 +1,18 @@
-import React, { useEffect } from 'react'
-import AddTodo from './AddTodo'
+import React, { useEffect } from "react";
+import AddTodo from "./AddTodo";
 
-function App () {
-  useEffect(() => {
+function App() {
+  useEffect(() => {}, []);
 
-  }, [])
+  //Redux - will put todos in global state
+  // componentDidMount() {
+  //   // fetchTodos()
+  
+  // }
+
+
+
+
 
   return (
     <>
@@ -15,7 +23,8 @@ function App () {
       <section className="main"></section>
       <footer className="footer"></footer>
     </>
-  )
+  );
 }
 
 export default App
+

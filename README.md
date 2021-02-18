@@ -11,6 +11,7 @@ See the breathtaking designs [here](http://localhost:3000/designs/)
 ## Notes
 
 A few notes to keep you out of trouble:
+
 - When running knex, run `npm run knex <command>`, e.g. `npm run knex migrate:latest` rather than using `npx`
 - When running webpack, run `npm run webpack <extra commands>`, e.g. `npm run webpack`, rather than using `npx`
 
@@ -28,3 +29,53 @@ Here's a list of steps in case they are useful. You can build in any order you l
 1.  Build API Client in the front end
 1.  Build Thunk Actions to get task from the API
 1.  Build Redux Actions to save task data from the API (remove hard-code initialState)
+
+Routes:
+
+GET /api/todos
+[
+{
+"id": 1,
+"task": "Sign up for trip to mars ",
+"priority": 1,
+"completed": 0
+},
+{
+"id":2,
+"task":"Make cookies",
+"priority":3,
+"completed":0
+}
+]
+
+POST /api/todos (add new todo and return all todos) - as above
+
+Front-end State:
+
+{
+todos: [
+{
+"id": 1,
+"task": " ",
+"priority": integer (eg. 1),
+"completed": Y/N
+},
+{
+"id":2,
+"task":" ",
+"priority": integer (eg. 1),
+"completed": Y/N
+}
+],
+
+//global state - will record what is in global state at any point
+addTodos: [
+{
+"id": 1,
+"task": "new todo",
+priority": integer (eg. 1),
+"completed": Y/N
+}
+]
+
+}
