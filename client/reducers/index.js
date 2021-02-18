@@ -8,6 +8,6 @@ import allTodos from "./allTodos";
 export default combineReducers({
   todos,
   addTodos,
-  allTodos,
+  allTodos
   // stuff
 });

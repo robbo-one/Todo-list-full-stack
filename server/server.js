@@ -7,6 +7,6 @@ server.use(express.json());
 server.use(express.static(path.join("server", "public")));
 
 const todoRoutes = require("./routes/todos");
-server.use("/v1/todos", todoRoutes);
+server.use("/api/v1/todos", todoRoutes);
 
 module.exports = server;

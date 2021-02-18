@@ -1,11 +1,11 @@
-//render a list of all todos
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-
-//render a list of todos, map through and show task field for all
+import { fetchAllTodos } from "../actions/setAllTodos";
 
 const AllTodos = (props) => {
-  useEffect(() => {}, []);
+  useEffect(() => {
+    props.dispatch(fetchAllTodos());
+  }, []);
 
   return (
     <>
@@ -22,8 +22,8 @@ const AllTodos = (props) => {
         ))}
       </ul>
     </>
-  );
-};
+  )
+}
 
 const mapStateToProps = (globalState) => {
   return {
