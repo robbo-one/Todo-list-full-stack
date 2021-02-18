@@ -11,7 +11,35 @@ function addTasks(task, db = connection) {
     .then(ids => ids[0])
 }
 
+function updateTasks (id, task, db = connection){
+
+    // task = {
+    //     task: 'do something',
+    //     priority
+    //      com
+    // }
+
+    return db('tasks')
+    .where('Tasks.id', id)
+    // .update({
+    //   task: task.task,
+    //   priority: task.priority,
+    //   completed: task.completed
+    // })
+    .update(task)
+  }
+
+
+  function deleteTasks (id, db = connection){
+    return db('tasks')
+    .where('Tasks.id', id)
+    .delete()
+  }
+
+
 module.exports = {
     getTasks,
-    addTasks
+    addTasks,
+    updateTasks,
+    deleteTasks
 }
