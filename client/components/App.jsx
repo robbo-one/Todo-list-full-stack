@@ -3,6 +3,7 @@ import AddTodo from './AddTodo'
 import {getTasks} from '../apis/tasks'
 import {setTasks} from '../actions'
 import {connect} from 'react-redux'
+import Tasks from './Tasks'
 
 
 function App (props) {
@@ -19,7 +20,7 @@ function App (props) {
       <header className="header">
         <h1>todos</h1>
         <AddTodo />
-        
+        <Tasks />
       </header>
       <section className="main"></section>
       <footer className="footer"></footer>
