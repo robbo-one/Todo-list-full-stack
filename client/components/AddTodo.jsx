@@ -15,8 +15,14 @@ function AddTodo (props) {
     props.dispatch(fetchTodos())
   }, []);
 
-  // console.log(props)
-  // onClick={() => {setCompleted(!completed)}} className={completed === true ? "completed" : ""}
+
+  let count = 0;
+  for (let i = 0; i < props.todos.length; i++) {
+    if (props.todos[i].completed === 0) {
+      count++;
+    }
+  }
+
   return (
     <div>
       <div className="header">
@@ -39,7 +45,7 @@ function AddTodo (props) {
           })}
         </ul>
         <div className="footer">
-        <span className="todo-count"><strong>0</strong> item left</span>
+        <span className="todo-count"><strong>{count}</strong> item left</span>
         <ul className="filters">
           <li>
             <a className="selected" href="#/">All</a>

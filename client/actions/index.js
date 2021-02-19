@@ -4,6 +4,8 @@ import { getTodos } from "../apis/todos";
 
 export const SET_TODOS = "SET_TODOS";
 export const TOGGLE = "TOGGLE";
+export const DELETE_TODO = "DELETE_TODO";
+
 
 export function setTodos (todos) {
   return {
@@ -20,6 +22,13 @@ export function setCompleted(id) {
   return {
     type: TOGGLE,
     id: id
+  }
+}
+
+export function deleteTodo (id) {
+  return {
+    type: DELETE_TODO,
+    id:id
   }
 }
 
