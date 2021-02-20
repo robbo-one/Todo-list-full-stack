@@ -26,10 +26,7 @@ export function fetchAllTodos () {
 
 export function addTodo(task) {
     return dispatch => {
-        //console.log(task)
-        return addTodos(task) //dispatches an api call
-        
-    .then((task) => { //object returned from database, then dispatch to reducer. in routes this is called "todo"
+      
     dispatch(setNewTodo(task)) //dispatch to reducer with setNewTodo func call
     })}
 }
