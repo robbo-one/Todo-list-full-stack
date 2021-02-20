@@ -19,6 +19,8 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_ALLTODOS": //confirmed in dev tools that this action works. info will go to store to be consumed by component. 
       return action.todos
+    case "ADD_TODO":
+      return [...state, action.task]
     default:
       return state;
   }

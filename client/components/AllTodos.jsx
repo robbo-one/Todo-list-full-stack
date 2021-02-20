@@ -9,15 +9,15 @@ const AllTodos = (props) => {
 
   return (
     <>
-      <ul class="todo-list">
+      <ul className="todo-list">
         {props.todos.map((todo) => (
           <li key={todo.id}>
-            <div class="view">
-              <input class="toggle" type="checkbox" />
+            <div className="view">
+              <input className="toggle" type="checkbox" />
               <label>{todo.task}</label>
-              <button class="destroy"></button>
+              <button className="destroy"></button>
             </div>
-            <input class="edit" value="Buy a unicorn" />
+            <input className="edit" value="Buy a unicorn" />
           </li>
         ))}
       </ul>

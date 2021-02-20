@@ -15,21 +15,29 @@ router.get("/", (req, res) => {
       res.json(todos); //send back to api who called the request
     })
     .catch((err) => {
+      console.log(err);
       res.status(500).send(err.message);
     });
 });
 
 //Add new todo - takes req body from form
 router.post("/", (req, res) => {
-  db.addTodo(req.body).then((todos) => {
-    res.json(todos); //pass updated todo list to client API
-  });
+  const newTodo = { task: req.body.task, priority: 1, completed: 0 }; //turns string into object with key value pairs
+  db.addTodo(newTodo)
+    .then((task) => {
+      //console.log(todo)//this gives a single new object with key value pairs
+      res.json(task); //pass updated todo list to client API
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send(err.message);
+    });
 });
 
 //Patch route request to update todo. Req body includes ?id, task, priority, completed
 router.patch("/:id", (req, res) => {
   db.updateTodo(req.params.id, req.body) //form only has title and content
     .then((todos) => {
-        res.json(todos);
-      });
-    })
+      res.json(todos);
+    });
+});
