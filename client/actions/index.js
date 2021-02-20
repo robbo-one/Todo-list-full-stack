@@ -1,16 +1,17 @@
 //@ts-check
 
-import { getTodos, toggleTask } from "../apis/todos";
+import { getTodos, toggleTask, addNewTask } from "../apis/todos";
 
 export const SET_TODOS = "SET_TODOS";
 export const TOGGLE = "TOGGLE";
+export const ADD_TODO = "ADD_TODO";
 // export const DELETE_TODO = "DELETE_TODO";
 
 
-export function setTodos (todos) {
+export function setTodos(todos) {
   return {
     type: SET_TODOS,
-    todos
+    todos: todos,
   };
 };
 
@@ -24,9 +25,16 @@ export function toggledTask(id, completed) {
     type: TOGGLE,
     id: id,
     completed: completed,
-  }
-}
+  };
+};
 
+// task ЭТО ОБЪЕКТ
+export function addNewTodo(task) {
+  return {
+    type: ADD_TODO,
+    newTask: task,
+  };
+};
 
 // export function deleteTodo (id) {
 //   return {
@@ -35,7 +43,7 @@ export function toggledTask(id, completed) {
 //   }
 // }
 
-export function fetchTodos () {
+export function fetchTodos() {
   return dispatch => {
     return getTodos()
       .then(todos => {
@@ -57,3 +65,13 @@ export function toggleTheTask(id) {
       });
   };
 };
+
+export function addNewTodos(task) {
+  return dispatch => {
+    return addNewTask(task)
+      .then(task => {
+        console.log(task)
+        dispatch(addNewTodo(task))
+      })
+  }
+}

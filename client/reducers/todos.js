@@ -1,6 +1,6 @@
 //@ts-check
 
-import { SET_TODOS, TOGGLE } from "../actions";
+import { SET_TODOS, TOGGLE, ADD_TODO } from "../actions";
 
 let initialState = [];
 
@@ -9,7 +9,7 @@ const reduser = (state = initialState, action) => {
     case SET_TODOS:
       return action.todos;
 
-    case TOGGLE:
+    case TOGGLE: {
       const newState = [...state];
       for (let i = 0; i < newState.length; i++) {
         if (newState[i].id === action.id) {
@@ -20,6 +20,13 @@ const reduser = (state = initialState, action) => {
       }
 
       return newState;
+    }
+
+    case ADD_TODO: {
+      const newState = [...state];
+      newState.push(action.newTask);
+      return newState;
+    }
 
     default:
       return state;

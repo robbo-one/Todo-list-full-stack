@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { fetchTodos, toggleTheTask } from "../actions/index";
+import { fetchTodos, toggleTheTask, addNewTodos } from "../actions/index";
 
 
 function AddTodo (props) {
@@ -23,11 +23,20 @@ function AddTodo (props) {
     }
   }
 
+  function handleKeyPress (e)  {
+    if(e.key === "Enter"){
+      console.log("Enter pressed")
+      props.dispatch(addNewTodos(e.target.value))
+      console.log(e.target.value)
+      e.target.value = "";
+    }
+  }
+
   return (
     <div>
       <div className="header">
           <h1>todos</h1>
-          <input className="new-todo" placeholder="What needs to be done?"/>
+          <input className="new-todo" placeholder="What needs to be done?" onKeyPress={handleKeyPress} />
         </div>
         <ul className="todo-list">
           {props.todos.map(todo => {

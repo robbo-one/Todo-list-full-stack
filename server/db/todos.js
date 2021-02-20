@@ -24,9 +24,27 @@ function toggleTask (id, db = connection) {
         .update({completed: newCompleted})
         .then(() => newCompleted);
     });
+};
+
+function addTask(task, db = connection) {
+  return db("task")
+    .insert({
+      todoTask: task,
+      completed: 0,
+    })
+    .then(ids => ids[0]);
+};
+
+function getTask(id, db = connection) {
+  return db("task")
+    .select()
+    .where("id", id)
+    .then(tasks => tasks[0]);
 }
 
 module.exports = {
   getTodos,
-  toggleTask
+  toggleTask,
+  addTask,
+  getTask,
 }
