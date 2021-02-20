@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import TasksList from './Tasks'
+import CurrentTasksList from './Current'
+import AddNewTask from './New'
 
 function App () {
   useEffect(() => {
@@ -10,10 +11,11 @@ function App () {
   return (
     <>
       <header className="header">
-        <h1>todos</h1>
-        <TasksList />
+        <h1>Get it done</h1>
       </header>
       <section className="main"></section>
+      <AddNewTask/>
+      <CurrentTasksList />
       <footer className="footer"></footer>
     </>
   )

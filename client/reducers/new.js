@@ -1,8 +1,8 @@
-import { SET_TASKS } from '../actions/actions'
+import { NEW_TASK } from '../actions/actions'
 
 const initialState = []
 
-const reducerSetTask = (state = initialState, action) => {
+const reducerAddNew = (state = initialState, action) => {
   switch (action.type) {
     case SET_TASKS:
       return action.tasks // <--- [{id, name}, { id. name}]
@@ -11,4 +11,4 @@ const reducerSetTask = (state = initialState, action) => {
   }
 }
 
-export default reducerSetTask
+export default reducerAddNew

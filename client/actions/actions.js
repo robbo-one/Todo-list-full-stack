@@ -1,6 +1,7 @@
-import { getTasks } from '../apis/apis'
+import { getTasks, newTask } from '../apis/apis'
 
 export const SET_TASKS = 'SET_TASKS'
+export const NEW_TASK = 'NEW_TASK'
 
 export function setTasks (tasks) {
   return {
@@ -16,5 +17,22 @@ export function fetchTasks () {
         dispatch(setTasks(tasks))
         return null
       })
+  }
+}
+
+export function addNewTask (tasks) {
+  return {
+    type: NEW_TASK,
+    tasks: tasks
+  }
+}
+
+export function saveNew (task) {
+  return dispatch => {
+    return newTask(task)
+    .then(() => {
+      dispatch(fetchTasks())
+      return null
+    })
   }
 }
