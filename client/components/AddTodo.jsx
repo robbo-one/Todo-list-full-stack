@@ -2,13 +2,13 @@
 
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { fetchTodos, setCompleted } from "../actions/index";
+import { fetchTodos, toggleTheTask } from "../actions/index";
 
 
 function AddTodo (props) {
 
   function handleClick(e) {
-    props.dispatch(setCompleted(Number(e.target.getAttribute("id"))))
+    props.dispatch(toggleTheTask(Number(e.target.getAttribute("id"))))
   }
 
   useEffect(() => {
