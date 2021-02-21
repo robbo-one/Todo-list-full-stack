@@ -28,6 +28,18 @@ router.post('/', (req, res) => {
   })
 })
 
+router.patch('/', (req, res) => {
+  db.updateTask(req.body.id, req.body.newDetail)
+  .then(() => {
+    res.sendStatus(200).json({ message: 'OK' })
+    return null
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({message: "Something when wrong"})
+  })
+})
+
 module.exports = router
 
 

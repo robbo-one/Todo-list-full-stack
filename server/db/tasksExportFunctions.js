@@ -6,7 +6,7 @@ function listTasks (db = connection) {
   .select();
 }
 
-function addTask (detail, completed, db = connection) {
+function addTask (detail, db = connection) {
   return db('tasks')
   .insert({
     detail: detail, 
@@ -14,7 +14,14 @@ function addTask (detail, completed, db = connection) {
   });
 }
 
+function updateTask (id, newDetail, db = connection) {
+  return db('tasks')
+  .where('id', id)
+  .update({detail: newDetail})
+}
+
 module.exports = {
   listTasks,
   addTask,
+  updateTask,
 }
