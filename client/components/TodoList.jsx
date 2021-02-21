@@ -16,9 +16,14 @@ return  (
         <ul className="todo-list">
             {props.tasks.map(task => {
                return (
-                    <li key={task.id} className="completed">
-                        <div className="view">
-                        <input className="toggle" type="checkbox"  />
+                   <li key={task.id} className={task.completed == 'yes' ? 'completed' : ""}>
+                     <div className="view">
+                        <input
+                         className="toggle"
+                          type="checkbox" 
+                          onClick={() => props.toggleClickHandler(task.id, task.completed)}
+                          checked={task.completedd == 'yes'} 
+                          />
                         <label>{task.task}</label>                  
                         <button className="destroy"></button>
                         </div>
