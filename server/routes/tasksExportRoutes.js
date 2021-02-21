@@ -1,7 +1,17 @@
-// const express = require('express')
+const express = require('express')
 
-// const db = require('../db/tasksExportFunctions')
+const db = require('../db/tasksExportFunctions')
 
-// const router = express.Router()
+const router = express.Router()
 
-// const { } = require("../db/tasksExportFunctions")
+router.get("/", (req, res) => {
+  db.getTasks()
+  .then(tasks => {
+    res.json(tasks);
+    return null;
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).json({message: "Something when wrong"})
+  })
+})
