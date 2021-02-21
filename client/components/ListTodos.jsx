@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import  { fetchTasks, delTask } from '../actions'
+import  { fetchTasks, delTask, uptTask } from '../actions'
 
 const ListTodos = (props) => {
 
@@ -14,6 +14,19 @@ const ListTodos = (props) => {
     props.dispatch(delTask(id))
   }
 
+  const dblClickHandler = event => {
+    event.target.parentNode.parentNode.className = "editing"
+  }
+
+  const keyHandler = (event, id) => {
+    if(event.keyCode == 13) {
+      props.dispatch(uptTask(id, event.target.value, 1))
+      // console.log(event.target.value)
+      event.target.value = ''
+      event.target.parentNode.className = ""
+    }
+  }
+
   return (
     <>
       <ul className="todo-list">
@@ -22,11 +35,11 @@ const ListTodos = (props) => {
             return (
               <li key={task.id} className="completed">
               <div className="view">
-                <input className="toggle" type="checkbox" checked />
-                <label>{task.task}</label>
+                <input className="toggle" type="checkbox" />
+                <label onDoubleClick={dblClickHandler}>{task.task}</label>
                 <button className="destroy" onClick={() => handleDelete(task.id)}></button>
               </div>
-              <input className="edit" value="Create a TodoMVC template" />
+              <input className="edit" />
             </li>
             )
           } else {
@@ -34,10 +47,10 @@ const ListTodos = (props) => {
             <li key={task.id}>
               <div className="view">
                 <input className="toggle" type="checkbox" />
-                <label>{task.task}</label>
+                <label onDoubleClick={dblClickHandler}>{task.task}</label>
                 <button className="destroy" onClick={() => handleDelete(task.id)}></button>
               </div>
-              <input className="edit" value="Create a TodoMVC template" />
+              <input className="edit" onKeyDown={(event) => keyHandler(event, task.id)} />
             </li>
           )
         }})} 

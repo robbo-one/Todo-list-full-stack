@@ -1,40 +1,40 @@
-import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
+// import React from 'react'
+// import { connect } from 'react-redux'
 
-const UpdateTodo = props => {
+// import { uptTask } from '../actions'
 
-  const dblClickHandler = event => {
-    
-  }
+// const UpdateTodo = props => {
 
-  return (
-    <>
+//   const dblClickHandler = event => {
+//     console.log(event)
+//     props.dispatch(uptTask())
+//     event.target.parentNode.parentNode.className = "editing"
+//   }
 
-    </>
-  )
-}
+//   return (
+//     <>
+//       <ul className="todo-list">
+//         {props.tasks.map(task => {
+//           return (
+//             <li key={task.id} class="completed">
+//               <div class="view">
+//                 <input class="toggle" type="checkbox" />
+//                 <label onDoubleClick={dblClickHandler}>{task.task}</label>
+//                 <button class="destroy"></button>
+//               </div>
+//               <input class="edit" />
+//             </li>
+//           )
+//         })}
+//       </ul>
+//     </>
+//   )
+// }
 
-export default connect()(UpdateTodo)
+// const mapStateToProps = (globalState) => {
+//   return {
+//     tasks: globalState.tasks
+//   }
+// }
 
-// state = {
-//   displayText: ""
-// };
-// timer = 0;
-// delay = 200;
-// prevent = false;
-
-// onDoubleClickHandler = () => {
-//   clearTimeout(this.timer);
-//   this.prevent = true;
-//   this.setState(
-//     {
-//       displayText: "Double Click"
-//     },
-//     () => {
-//       console.log(this.state);
-//       setTimeout(() => {
-//         this.prevent = false;
-//       }, this.delay);
-//     }
-//   );
-// };
+// export default connect(mapStateToProps)(UpdateTodo)

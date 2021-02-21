@@ -1,4 +1,4 @@
-import { ADD_TASK, SET_TASKS, DEL_TASK } from '../actions'
+import { ADD_TASK, SET_TASKS, DEL_TASK, UPT_TASK } from '../actions'
 
 const initialState = []
 
@@ -11,6 +11,13 @@ const reducer = (state = initialState, action) => {
     case DEL_TASK:
       return state.filter(todo => 
         todo.id !== action.id)
+    case UPT_TASK:
+      return state.map(todo => {
+        console.log(todo.id)
+        if(todo.id === action.todo.id) {
+          return action.todo
+        }
+      })
     default:
       return state
    }
