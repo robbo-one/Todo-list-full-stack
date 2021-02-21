@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   db.addTask(req.body.detail, req.body.completed)
   .then(() => {
-    res.sendStatus(200).json({ message: 'OK' })
+    res.status(200).json({ message: 'Added!' })
     return null
   })
   .catch(err => {
@@ -31,7 +31,19 @@ router.post('/', (req, res) => {
 router.patch('/', (req, res) => {
   db.updateTask(req.body.id, req.body.newDetail)
   .then(() => {
-    res.sendStatus(200).json({ message: 'OK' })
+    res.status(200).json({ message: 'Updated!' })
+    return null
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({message: "Something when wrong"})
+  })
+})
+
+router.delete('/', (req, res) => {
+  db.deleteTask(req.body.id)
+  .then(() => {
+    res.status(200).json({ message: 'Deleted!' })
     return null
   })
   .catch(err => {

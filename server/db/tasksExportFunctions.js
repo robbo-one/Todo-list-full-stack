@@ -20,8 +20,15 @@ function updateTask (id, newDetail, db = connection) {
   .update({detail: newDetail})
 }
 
+function deleteTask (id, db = connection) {
+  return db('tasks')
+  .where('id', id)
+  .delete()
+}
+
 module.exports = {
   listTasks,
   addTask,
   updateTask,
+  deleteTask
 }
