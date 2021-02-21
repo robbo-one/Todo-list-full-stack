@@ -1,0 +1,53 @@
+//Single todo with it's own state
+//if a single task is double clicked, change ClassName to editing and allow editing, run update.
+
+
+import React, { useState } from "react";
+import { updateTodo } from "../actions/setAllTodos";
+import { connect } from "react-redux";
+
+const ATodo = (props) => {
+const[updatedTodo, setUpdatedTodo] = useState (props.todo.task)
+
+const[editing, setEditing] = useState (false)
+
+
+    // useEffect(() => {
+    //   props.dispatch(updateTodo()); //function in actions
+    // }, []);
+
+    const handleDoubleClick = () => {
+        setEditing(true);
+      };
+    
+const handleChange = (event) => {
+  setUpdatedTodo(event.target.value)
+}
+      
+
+
+function UpdateTodo(id, updatedTodo) {
+ dispatch(updateTodo(id, updatedTodo))
+}
+
+      return (
+        <li className={editing ? 'editing' : '' }>
+                <div className="view">
+                  <input className="toggle" type="checkbox" />
+                  <label onDoubleClick={() => handleDoubleClick()}>{updatedTodo}</label >
+                  <button className="destroy"></button>
+                </div>
+                <input className="edit" value={updatedTodo} onChange={(event) => handleChange(event)} />
+              </li>
+      )
+}  
+
+//class no class
+export default ATodo
+
+
+
+
+
+
+
