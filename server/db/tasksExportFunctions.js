@@ -1,7 +1,7 @@
 const config = require("./knexfile").development;
 const connection = require("knex")(config);
 
-function getTasks (db = connection) {
+function listTasks (db = connection) {
   return db('tasks').select();
 }
 
@@ -12,6 +12,6 @@ function getTasks (db = connection) {
 // }
 
 module.exports = {
-  getTasks
+  listTasks
   // addTask
 }
