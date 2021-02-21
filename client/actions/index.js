@@ -1,8 +1,9 @@
-import { getTasks, addTask, deleteTask } from '../apis/api'
+import { getTasks, addTask, deleteTask, updateTask } from '../apis/api'
 
 export const SET_TASKS = 'SET_TASKS'
 export const ADD_TASK = 'ADD_TASK'
 export const DEL_TASK = 'DEL_TASK'
+export const UPT_TASK = 'UPT_TASK'
 
 export const setTasks = tasks => {
   return {
@@ -51,6 +52,23 @@ export const delTask = id => {
     console.log('delete dispatched', id)
 
     return deleteTask(id)
+      .then(() => {
+        dispatch(fetchTasks())
+        return null
+      })
+  }
+}
+
+export const changeTask = task => {
+  return {
+    type: UPT_TASK,
+    task
+  }
+}
+
+export const uptTask = (id, newTask, priority) => {
+  return dispatch => {
+    return updateTask(id, newTask, priority)
       .then(() => {
         dispatch(fetchTasks())
         return null

@@ -18,8 +18,20 @@ const ListTodos = (props) => {
     <>
       <ul className="todo-list">
         {props.tasks.map(task => {
+          if(task.completed === 'yes') {
+            return (
+              <li key={task.id} className="completed">
+              <div className="view">
+                <input className="toggle" type="checkbox" checked />
+                <label>{task.task}</label>
+                <button className="destroy" onClick={() => handleDelete(task.id)}></button>
+              </div>
+              <input className="edit" value="Create a TodoMVC template" />
+            </li>
+            )
+          } else {
           return (
-            <li key={task.id} className="completed">
+            <li key={task.id}>
               <div className="view">
                 <input className="toggle" type="checkbox" />
                 <label>{task.task}</label>
@@ -28,7 +40,7 @@ const ListTodos = (props) => {
               <input className="edit" value="Create a TodoMVC template" />
             </li>
           )
-        })}
+        }})} 
       </ul>
     </>
   )

@@ -2,9 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { newTask } from '../actions'
 
-function AddTodo (props) {
+const AddTodo = props => {
 
-  const keyHandler = (event) => {
+  const keyHandler = event => {
     if(event.keyCode == 13) {
       props.dispatch(newTask(event.target.value, 1))
       event.target.value = ''

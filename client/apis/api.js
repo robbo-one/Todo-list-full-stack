@@ -11,7 +11,7 @@ export function getTasks() {
 		})
 		.catch(err => {
 			console.log(err)
-			return res.send(400).json({ message: 'Cannot process request'})
+			return res.send(400).json({ message: 'Cannot process request' })
 		})
 }
 
@@ -24,7 +24,7 @@ export function addTask(task, priority) {
 		})
 		.catch(err => {
 			console.log(err)
-			return res.send(400).json({ message: 'Cannot process request'})
+			return res.send(400).json({ message: 'Cannot process request' })
 		})
 }
 
@@ -37,7 +37,7 @@ export function updateTask(id, newTask, priority) {
 		})
 		.catch(err => {
 			console.log(err)
-			return res.send(400).json({ message: 'Cannot process request'})
+			return res.send(400).json({ message: 'Cannot process request' })
 		})
 }
 
@@ -50,6 +50,6 @@ export function deleteTask(id) {
 		})
 		.catch(err => {
 			console.log(err)
-			return res.send(400).json({ message: 'Cannot process request'})
+			return res.send(400).json({ message: 'Cannot process request' })
 		})
 }
