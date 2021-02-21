@@ -1,8 +1,9 @@
 //@ts-check
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { fetchTodos, toggleTheTask, addNewTodos, deleteThisTodo } from "../actions/index";
+
 
 
 function AddTodo (props) {
@@ -14,6 +15,10 @@ function AddTodo (props) {
   useEffect(() => {
     props.dispatch(fetchTodos())
   }, []);
+
+  useEffect(() => {
+    setTodos(props.todos)
+  }, [props.todos.length]);
 
 
   let count = 0;
@@ -39,13 +44,27 @@ function AddTodo (props) {
   }
 
   function deleteAllComplited() {
-    console.log(props.todos)
+    // console.log(props.todos)
     for (let i = 0; i < props.todos.length; i++) {
       if (props.todos[i].completed === 1) {
         props.dispatch(deleteThisTodo(props.todos[i].id))
       }
     }
   }
+
+  const [todos, setTodos] = useState([]);
+
+  // const completedTodos = props.todos.filter(todo => todo.completed === 1);
+
+  function showActiveTodos() {
+    const activeTodos = props.todos.filter(todo => todo.completed === 0);
+    console.log(activeTodos)
+    setTodos(activeTodos)
+  }
+
+  // function showCompletedTodos() {
+  //   setTodos(completedTodos)
+  // }
 
   return (
     <div>
@@ -54,7 +73,7 @@ function AddTodo (props) {
           <input className="new-todo" placeholder="What needs to be done?" onKeyPress={handleKeyPress} />
         </div>
         <ul className="todo-list">
-          {props.todos.map(todo => {
+          {todos.map(todo => {
 
             return (
               <li key={todo.id}  className={todo.completed === 1 ? "completed" : ""}>
@@ -75,7 +94,7 @@ function AddTodo (props) {
             <a className="selected" href="#/">All</a>
           </li>
           <li>
-            <a href="#/active">Active</a>
+            <a onClick={() => showActiveTodos()} href="#/active">Active</a>
           </li>
           <li>
             <a href="#/completed">Completed</a>
