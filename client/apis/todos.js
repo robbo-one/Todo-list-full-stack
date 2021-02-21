@@ -25,3 +25,12 @@ export function deleteTodo(id) {
     console.log(err)
   })
 }
+
+export function updateTodo(id, completed) {
+  return request.patch(rootUrl)
+  .send({id: id, completed: completed})
+  .then(res => res.body)
+  .catch(err => {
+    console.log(err)
+  })
+}

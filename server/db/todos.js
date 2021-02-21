@@ -1,22 +1,31 @@
 const connection = require('./connection')
 
-function getTodos (db = connection) {
+function getTodos(db = connection) {
   return db('todos')
-  .select()
+    .select()
 }
 
-function addTodo (todo, db = connection) {
+function addTodo(todo, db = connection) {
   return db('todos')
-  .insert({text: todo, priority: 3, completed: false})
+    .insert({ text: todo, priority: 3, completed: false })
 }
 
-function deleteTodo (id, db = connection) {
+function deleteTodo(id, db = connection) {
   return db('todos')
-  .where('id', id).delete()}
+    .where('id', id).delete()
+}
 
+function updateTodo (id, completed, db = connection) {
+  return db('todos')
+    .where('id', id)
+    .update({
+      completed: !completed
+    })
+}
 
 module.exports = {
- getTodos,
- addTodo,
- deleteTodo
+  getTodos,
+  addTodo,
+  deleteTodo,
+  updateTodo
 }

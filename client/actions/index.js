@@ -1,4 +1,4 @@
-import { deleteTodo, addTodo, getTodos } from '../apis/todos'
+import { deleteTodo, addTodo, getTodos, updateTodo } from '../apis/todos'
 
 export const SET_LIST = 'SET_LIST'
 
@@ -37,6 +37,25 @@ export function fetchTodos () {
           return null
         })
     }
+  }
+
+  export function updateTodos (id, completed) {
+    return dispatch => {
+      return updateTodo(id, completed)
+        .then(res => {
+          dispatch(updateList(id, completed))
+          return null
+        })
+    }
+  }
+
+  export const UPDATE_LIST = 'UPDATE_LIST'
+
+  export function updateList (id, completed) {
+    return {
+      type: UPDATE_LIST,
+      id: id,
+       completed: completed  }
   }
 
 export const ADD_TO_LIST = 'ADD_TO_LIST'

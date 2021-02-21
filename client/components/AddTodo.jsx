@@ -7,7 +7,7 @@ function AddTodo(props) {
 
   const handleKeyPress = (e) => {
     if (e.which === 13) {
-      handleSubmit()
+      handleSubmit(e)
     }
   }
   const [newTodoText, setNewTodoText] = useState("")
@@ -16,14 +16,22 @@ function AddTodo(props) {
     setNewTodoText(e.target.value)
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.target.value = ""
     props.dispatch(insertTodo(newTodoText))
+    .then(()=>{
+      props.dispatch(fetchTodos());
+      setNewTodoText("")
+    })
   }
 
 
   return (
     <>
+
       <input id="addTodo" className="new-todo" placeholder="What needs to be done?" autoFocus={true} onKeyPress={handleKeyPress} onChange={handleChange} />
+
+      
     </>
   )
 }

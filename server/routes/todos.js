@@ -27,10 +27,19 @@ router.post('/', (req, res) => {
     })
 })
 
-
-
 router.delete('/', (req, res) => {
   db.deleteTodo(req.body.id)
+    .then(() => {
+      res.sendStatus(200)
+      return null
+    })
+    .catch(err => {
+      console.log(err)
+    })
+})
+
+router.patch('/', (req, res) => {
+  db.updateTodo(req.body.id, req.body.completed)
     .then(() => {
       res.sendStatus(200)
       return null
