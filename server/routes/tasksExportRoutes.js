@@ -4,7 +4,7 @@ const db = require('../db/tasksExportFunctions')
 
 const router = express.Router()
 
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
   db.getTasks()
   .then(tasks => {
     res.json(tasks);
@@ -15,3 +15,5 @@ router.get("/", (req, res) => {
     res.status(500).json({message: "Something when wrong"})
   })
 })
+
+module.exports = router
