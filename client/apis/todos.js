@@ -25,3 +25,10 @@ export function addNewTask(task) {
       return res.body;
     });
 };
+
+export function deleteTask(id) {
+  return request.delete(rootUrl + "/todos/" + id + "/delete")
+    .then((res) => {
+      return res.body;
+    });
+};

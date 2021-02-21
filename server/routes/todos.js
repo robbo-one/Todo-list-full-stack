@@ -5,7 +5,7 @@ const express = require('express')
 const db = require("../db/todos")
 
 const router = express.Router()
-const { getTodos, toggleTask, addTask, getTask, deleteTask } = require("../db/todos");
+const { toggleTask, addTask, getTask, deleteTask } = require("../db/todos");
 
 router.get("/", (req, res) => {
   db.getTodos()

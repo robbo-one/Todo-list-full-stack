@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchTodos, toggleTheTask, addNewTodos } from "../actions/index";
+import { fetchTodos, toggleTheTask, addNewTodos, deleteThisTodo } from "../actions/index";
 
 
 function AddTodo (props) {
@@ -32,6 +32,12 @@ function AddTodo (props) {
     }
   }
 
+
+  function handleDeleteTodo(e) {
+    console.log(e.target.dataset.id)
+    props.dispatch(deleteThisTodo(Number(e.target.dataset.id)));
+  }
+
   return (
     <div>
       <div className="header">
@@ -46,7 +52,7 @@ function AddTodo (props) {
               <div className="view">
                 <input className="toggle" id={todo.id} type="checkbox" checked={todo.completed === 1} onChange={handleClick} />
                 <label>{todo.todoTask}</label>
-                <button className="destroy"></button>
+                <button className="destroy" data-id={todo.id} onClick={handleDeleteTodo}></button>
               </div>
               <input className="edit" />
             </li>
