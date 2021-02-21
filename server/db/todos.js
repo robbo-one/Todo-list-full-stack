@@ -7,6 +7,7 @@ module.exports = {
   getTodos,
   addTodo,
   updateTodo,
+  deleteTodo
 };
 
 //Get a list of tasks. Will return array of objects
@@ -39,7 +40,14 @@ function updateTodo(id, updatedTodo, db = connection) {
   return db("todos")
     .update(updatedTodo)
     .where("todos.id", id)
-    .then(() => {
+    .then(() => { //does this give an id?
       return getTodos(); //jumps back to routes
     });
+}
+
+//Delete todo
+function deleteTodo(id, db = connection) {
+  return db("todos")
+  .where('id', id)
+  .delete()
 }

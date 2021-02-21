@@ -1,39 +1,61 @@
-import { addTodos } from '../apis/addTodos'
-import { getAllTodos } from '../apis/allTodos'
+import { addTodos } from "../apis/addTodos";
+import { getAllTodos } from "../apis/allTodos";
+import { updateATodo } from "../apis/addTodos";
 
-export const SET_ALLTODOS = 'SET_ALLTODOS'
+//Note: Thunk conditional dispatch actions are marked below
 
-
-//Function on line 22 is DISPATCHED (when todos come back from api) and receives list of todos
-export function setAllTodos (todos) {
-    return {
-        type: SET_ALLTODOS, // then finds this SET_ALLTODOS reducer and sends todos into state
-        todos
-    }
+//1= User action from component initialises this function
+export function fetchAllTodos() {
+  return (dispatch) => {
+    return getAllTodos() //dispatches getAllTodos function inside api file. API will hit route then dbase and return data via same path back to Line 12 below
+      .then((todos) => {
+        //api returns body of response (list of todos)
+        dispatch(setAllTodos(todos)); //thunk conditional dispatch - app waits for returned data before dispatching setAllTodos func.
+        return null;
+      });
+  };
 }
 
-//When component hits this file it runs function below it says run getAllTodos inside API file, api hits route and returns todos
-export function fetchAllTodos () {
-    return dispatch => {
-        return getAllTodos() //dispatches getAllTodos function from api - will hit up API
-            .then(todos => { //api returns body of response (list of todos)
-                dispatch(setAllTodos(todos)) //this function is called, jump to line 7. Then goes to reducer to setAllTodos in state to the object that came back
-                return null
-            })
-    }
+export const SET_ALLTODOS = "SET_ALLTODOS";
+//Thunk action now able to be dispatched as data is received back back api
+export function setAllTodos(todos) {
+  return {
+    type: SET_ALLTODOS, // this action is sent to reducer which will put todos data in to state
+    todos,
+  };
 }
-
 
 export function addTodo(task) {
-    return dispatch => {
-      
-    dispatch(setNewTodo(task)) //dispatch to reducer with setNewTodo func call
-    })}
+  return (dispatch) => {
+    //console.log(task)
+    return addTodos(task) //dispatches addTodos func in api
+      .then((task) => {
+        //object returned from api
+        dispatch(setNewTodo(task)); //thunk conditional dispatch. calls setNewTodo func which calls ADD_TODO function in reducer
+      });
+  };
 }
 
 export function setNewTodo(task) {
-    return {
-        type: 'ADD_TODO',
-        task
-    }
+  return {
+    type: "ADD_TODO", //this action is sent to reducer which will update state with list of todos containing appended task at the bottom
+    task,
+  };
+}
+
+//update todo - action receives an id and a string
+export function updateTodo(id, updatedTodo) {
+  return (dispatch) => {
+    return updateATodo(id, updatedTodo) //calls updateATodo function in API, then waits (async)
+      .then((id, updatedTodo) => {
+        dispatch(setUpdatedTodo(id, updatedTodo)); //thunk conditional dispatch. When data received back from api it calls setUpdatedTodo func (in actions) which dispatches UPDATE_TODO action to reducer to update state
+      });
+  };
+}
+export function setUpdatedTodo(id, updatedTodo) {
+  return {
+    type: "UPDATE_TODO", //action sent to reducer which will update state with updated todo
+    id,
+    updatedTodo,
+  };
 }

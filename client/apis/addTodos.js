@@ -13,3 +13,14 @@ export function addTodos(task) {
     })
 }
 
+export function updateATodo(id, updatedTodo) {
+  return request
+    .post(rootUrl + "/todos/:id") //goes to routes
+    .send(id, updatedTodo)
+    .then((res) => {//async, waits for response from route
+      //console.log(res) 
+      //data received back from routes as res.json
+      return res.body
+    })
+}
+

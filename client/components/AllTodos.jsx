@@ -4,7 +4,7 @@ import { fetchAllTodos } from "../actions/setAllTodos";
 
 const AllTodos = (props) => {
   useEffect(() => {
-    props.dispatch(fetchAllTodos());
+    props.dispatch(fetchAllTodos()); //function call dispatched to action 
   }, []);
 
   return (

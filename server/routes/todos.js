@@ -41,3 +41,10 @@ router.patch("/:id", (req, res) => {
       res.json(todos);
     });
 });
+
+//Delete todo
+router.delete("/", (req, res) => {
+  db.deleteTodo(req.body.id).then(() => {
+    return null;
+  });
+});
