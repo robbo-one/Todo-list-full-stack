@@ -6,7 +6,7 @@ export function getTasks() {
   return request
 		.get(rootUrl)
 		.then(res => {
-			return res.body.tasks
+			return res.body
 		})
 		.catch(err => {
 			console.log(err)
@@ -25,10 +25,10 @@ export function addTask(task, priority) {
 		})
 }
 
-export function updateTask(id, newTask, priority) {
+export function updateTask(id, newTask) {
 	return request
 		.patch(rootUrl)
-		.send({id: id, newTask: newTask, priority: priority})
+		.send({id: id, newTask: newTask})
 		.then(res => {
 			return null
 		})

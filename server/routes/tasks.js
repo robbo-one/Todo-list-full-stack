@@ -7,7 +7,7 @@ const router = express.Router()
 router.get('/', (req,res) => {
   db.getTasks()
     .then(tasks => {
-			res.json({tasks})
+			res.json(tasks)
 		})
 		.catch(err => {
 			console.log(err)

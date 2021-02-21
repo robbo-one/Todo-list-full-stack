@@ -10,7 +10,6 @@ const ListTodos = (props) => {
   }, [])
 
   const handleDelete = id => {
-    console.log('delete')
     props.dispatch(delTask(id))
   }
 
@@ -20,9 +19,9 @@ const ListTodos = (props) => {
 
   const keyHandler = (event, id) => {
     if(event.keyCode == 13) {
-      props.dispatch(uptTask(id, event.target.value, 1))
+      props.dispatch(uptTask(id, event.target.value))
       // console.log(event.target.value)
-      event.target.value = ''
+      event.target.value = ""
       event.target.parentNode.className = ""
     }
   }
