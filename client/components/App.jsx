@@ -2,14 +2,12 @@ import React, { useEffect } from 'react'
 import AddTodo from './AddTodo'
 import { connect } from 'react-redux'
 import ListTodos from './ListTodos'
+import Footer from './Footer'
 
 function App () {
   useEffect(() => {
     
   }, [])
-
-
-
 
 
   return (
@@ -21,14 +19,17 @@ function App () {
       </header>
       <section className="main">
       </section>
-      <footer className="footer"></footer>
+      <footer className="footer">
+        <Footer/>
+      </footer>
     </>
   )
 }
 
 const mapStateToProps = (globalState) => {
   return {
-    todos : globalState.todos
+    todos : globalState.todos,
+    filters: globalState.filters
   }
 }
 export default connect(mapStateToProps)(App)

@@ -9,6 +9,16 @@ export function setList (todos) {
   }
 }
 
+export const FILTER_ALL = 'FILTER_ALL'
+
+
+export function filterAll (filter) {
+  return {
+    type: FILTER_ALL,
+    filter: filter
+  }
+}
+
 export function fetchTodos () {
     return dispatch => {
       return getTodos()
