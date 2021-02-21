@@ -52,13 +52,15 @@ function AddTodo (props) {
     }
   }
 
+
   const [todos, setTodos] = useState([]);
 
-
+  function showAllTodos() {
+    setTodos(props.todos)
+  }
 
   function showActiveTodos() {
     const activeTodos = props.todos.filter(todo => todo.completed === 0);
-    // console.log(activeTodos)
     setTodos(activeTodos);
   }
 
@@ -92,7 +94,7 @@ function AddTodo (props) {
         <span className="todo-count"><strong>{count}</strong> item left</span>
         <ul className="filters">
           <li>
-            <a className="selected" href="#/">All</a>
+            <a onClick={() => showAllTodos()} className="selected" href="#/">All</a>
           </li>
           <li>
             <a onClick={() => showActiveTodos()} href="#/active">Active</a>
