@@ -15,16 +15,21 @@ const CurrentTasksList = (props) => {
   return (
     <>
       <ul className="todo-list">
-        {props.tasks.map((task) => {
-          return <li key={task.id}>{task.detail}</li>;
+        {props.tasks.map(task => {
+          return (
+
+          <li key={task.id}>{task.detail}</li>
+          )
         })}
       </ul>
     </>
   );
 };
+
 const mapStateToProps = (globalState) => {
   return {
     tasks: globalState.tasks,
   };
 };
+
 export default connect(mapStateToProps)(CurrentTasksList);

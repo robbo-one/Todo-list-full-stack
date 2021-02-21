@@ -14,8 +14,9 @@ function App () {
         <h1>Get it done</h1>
       </header>
       <section className="main"></section>
-      <AddNewTask/>
+      
       <CurrentTasksList />
+      <AddNewTask />
       <footer className="footer"></footer>
     </>
   )

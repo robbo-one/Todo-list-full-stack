@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {connect} from "react-redux";
+// import {connect} from "react-redux";
 import { addNewTask, saveNew } from "../actions/actions";
 // import { CurrentTasksList } from './Current'
 
@@ -8,7 +8,7 @@ const AddNewTask = (props) => {
   // returns a pair of values: the current state and a function that updates it.
   const [addCurrentState, addUpdateState] = useState(
     {
-      detail: '',
+      detail: ``,
     }
   );
 
@@ -46,10 +46,7 @@ const AddNewTask = (props) => {
     </>
   );
 };
-const mapStateToProps = (globalState) => {
-  return {
-    tasks: globalState.tasks,
-  };
-};
-export default connect(mapStateToProps)(AddNewTask);
+
+
+export default AddNewTask
 
