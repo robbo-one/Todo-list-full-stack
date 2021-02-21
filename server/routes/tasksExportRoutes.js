@@ -17,11 +17,16 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-
+  db.addTask(req.body.detail, req.body.completed)
+  .then(() => {
+    res.sendStatus(200).json({ message: 'OK' })
+    return null
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({message: "Something when wrong"})
+  })
 })
-
-
-
 
 module.exports = router
 
