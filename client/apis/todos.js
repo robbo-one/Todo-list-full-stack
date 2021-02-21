@@ -3,7 +3,8 @@ import request from 'superagent'
 const rootUrl = '/api'
 
 export function getTodos (){
-  return request.get(rootUrl)
+  return request
+  .get(rootUrl)
   .then(res => {
     return res.body
   })

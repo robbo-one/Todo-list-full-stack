@@ -14,7 +14,7 @@ function App () {
         <h1>todos</h1>
         <>
         <AddTodo />
-      <SelectTodos />
+        <SelectTodos />
         
         </>
       </header>

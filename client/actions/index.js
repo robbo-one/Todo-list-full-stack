@@ -3,7 +3,7 @@ import { addTodo, getTodos } from '../apis/todos'
 export const ADD_TODO = 'ADD_TODO'
 export const DEL_TODO = 'DEL_TODO'
 export const GET_TODO = 'GET_TODO'
-// export const SET_TODOS= 'SET_TODOS'
+export const SET_TODOS= 'SET_TODOS'
 
 export function addTodoToStore(todo) {
   return {
@@ -31,18 +31,19 @@ export function pullTodos(){
   return dispatch =>{
     return getTodos()
     .then(todos => {
-      dispatch(printTodos(todos))
+      dispatch(setTodos(todos))
       return null
     })
   } 
 }
 
-// export function setTodos(todos){
-//   return{ 
-//    type: SET_TODOS,
-//    todo: todos
-//   }
-// }
+export function setTodos(todos){
+  console.log('sending to reducer', todos)
+  return{ 
+   type: SET_TODOS,
+   todos: todos
+  }
+}
 
 export function delTodo(todo) {
   return {
