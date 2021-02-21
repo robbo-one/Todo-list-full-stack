@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {fetchTasks} from "../actions/actions";
 
+// I don't even know
+
 const CurrentTasksList = (props) => {
   // useState lets you add React state to function components
   // returns a pair of values: the current state and a function that updates it.
