@@ -54,17 +54,18 @@ function AddTodo (props) {
 
   const [todos, setTodos] = useState([]);
 
-  // const completedTodos = props.todos.filter(todo => todo.completed === 1);
+
 
   function showActiveTodos() {
     const activeTodos = props.todos.filter(todo => todo.completed === 0);
-    console.log(activeTodos)
-    setTodos(activeTodos)
+    // console.log(activeTodos)
+    setTodos(activeTodos);
   }
 
-  // function showCompletedTodos() {
-  //   setTodos(completedTodos)
-  // }
+  function showCompletedTodos() {
+    const completedTodos = props.todos.filter(todo => todo.completed === 1);
+    setTodos(completedTodos);
+  }
 
   return (
     <div>
@@ -97,7 +98,7 @@ function AddTodo (props) {
             <a onClick={() => showActiveTodos()} href="#/active">Active</a>
           </li>
           <li>
-            <a href="#/completed">Completed</a>
+            <a onClick={() => showCompletedTodos()} href="#/completed">Completed</a>
           </li>
         </ul>
         <button className="clear-completed" onClick={deleteAllComplited}>Clear completed</button>
