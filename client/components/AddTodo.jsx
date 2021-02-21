@@ -25,17 +25,26 @@ function AddTodo (props) {
 
   function handleKeyPress (e)  {
     if(e.key === "Enter"){
-      console.log("Enter pressed")
+      // console.log("Enter pressed")
       props.dispatch(addNewTodos(e.target.value))
-      console.log(e.target.value)
+      // console.log(e.target.value)
       e.target.value = "";
     }
   }
 
 
   function handleDeleteTodo(e) {
-    console.log(e.target.dataset.id)
+    // console.log(e.target.dataset.id)
     props.dispatch(deleteThisTodo(Number(e.target.dataset.id)));
+  }
+
+  function deleteAllComplited() {
+    console.log(props.todos)
+    for (let i = 0; i < props.todos.length; i++) {
+      if (props.todos[i].completed === 1) {
+        props.dispatch(deleteThisTodo(props.todos[i].id))
+      }
+    }
   }
 
   return (
@@ -72,7 +81,7 @@ function AddTodo (props) {
             <a href="#/completed">Completed</a>
           </li>
         </ul>
-        <button className="clear-completed">Clear completed</button>
+        <button className="clear-completed" onClick={deleteAllComplited}>Clear completed</button>
       </div>
     </div>
   )

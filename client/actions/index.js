@@ -70,7 +70,7 @@ export function addNewTodos(task) {
   return dispatch => {
     return addNewTask(task)
       .then(task => {
-        console.log(task)
+        // console.log(task)
         dispatch(addNewTodo(task))
       })
   }
