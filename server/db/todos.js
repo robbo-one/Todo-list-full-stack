@@ -1,6 +1,7 @@
 //@ts-check
 
 const Knex = require('knex');
+const { where } = require('./connection');
 const connection = require('./connection')
 
 function getTodos (db = connection) {
@@ -42,9 +43,17 @@ function getTask(id, db = connection) {
     .then(tasks => tasks[0]);
 }
 
+function deleteTask(id, db = connection) {
+  return db("task")
+    .select()
+    .where("id", id)
+    .delete()
+}
+
 module.exports = {
   getTodos,
   toggleTask,
   addTask,
   getTask,
+  deleteTask,
 }

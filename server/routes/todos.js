@@ -5,7 +5,7 @@ const express = require('express')
 const db = require("../db/todos")
 
 const router = express.Router()
-const { toggleTask, addTask, getTask } = require("../db/todos");
+const { getTodos, toggleTask, addTask, getTask, deleteTask } = require("../db/todos");
 
 router.get("/", (req, res) => {
   db.getTodos()
@@ -35,8 +35,15 @@ router.post("/newTask", (req, res) => {
       getTask(id)
         .then(task => {
           res.json(task)
-        })
-    })
-})
+        });
+    });
+});
+
+router.delete("/:id/delete", (req, res) => {
+  deleteTask(req.params.id)
+    .then(() => {
+      res.json({});
+    });
+});
 
 module.exports = router

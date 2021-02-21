@@ -1,6 +1,6 @@
 //@ts-check
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchTodos, toggleTheTask, addNewTodos } from "../actions/index";
 
