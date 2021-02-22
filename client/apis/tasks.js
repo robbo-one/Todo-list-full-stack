@@ -9,13 +9,14 @@ export function getTasks () {
     })
 }
 
-// export function addTask (task, priority) {
-//     return request
-//     .post(rootUrl + '/tasks')
-//     .send({task : task,priority:priority})
-//     .then(res => {
-//          return res.body
-//     })
+export function addTask (task, priority) {
+    return request
+    .post(rootUrl + '/tasks')
+    .send({task : task,priority:priority})
+    .then(res => {
+         return res.body
+    })
+}
 //     .catch(err => {
 //         console.log(err)
 //         return res.send(400)
