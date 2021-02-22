@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import AddTodo from './AddTodo'
+import { listAllTheTasks } from '../actions/actions'
+import { connect } from 'react-redux'
 
 function App () {
   useEffect(() => {
@@ -9,7 +11,7 @@ function App () {
   return (
     <>
       <header className="header">
-        <h1>todos</h1>
+        <h1>To Do</h1>
         <AddTodo />
       </header>
       <section className="main"></section>
@@ -18,4 +20,11 @@ function App () {
   )
 }
 
-export default App
+const mapStateToProps = (globalState) => {
+  return {
+    tasks: globalState.tasks,
+  }
+}
+
+
+export default connect(mapStateToProps)(App)
