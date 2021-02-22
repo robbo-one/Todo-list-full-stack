@@ -7,7 +7,7 @@ function Footer(props) {
 
   const [selected, setSelected] = useState(localStorage.getItem("filter"))
   // let selected = localStorage.getItem('filter')
-  selected == undefined && setSelected(localStorage.setItem("filter", "All"))
+  // selected == undefined && setSelected(localStorage.setItem("filter", "All"))
 
   const checkIfCompletedItemExists = () => {
     return t.find((task) => task.completed == "yes")

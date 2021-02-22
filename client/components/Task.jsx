@@ -1,18 +1,55 @@
-import React, { useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { connect } from 'react-redux'
 
 function Task(props) {
 
   const task = props.task
   const inputEl = useRef(null)
+  const [editing, setEditing] = useState(false)
 
-  const doubleClickHandler = (evt) => {
-    evt.target.parentNode.parentNode.className = "editing"
+  const doubleClickHandler = (e) => {
+    setEditing(true)
+    // e.target.parentNode.parentNode.className = "editing" 
+    // inputEl.current.focus()
+  }
+
+  const keyDownHandler = (evt, id) => {
+    if (evt.keyCode == 13) {
+      //enter
+      if(evt.target.value == ''){
+        alert('task cannot be empty')
+      } else {
+        props.dispatch(updateTask(id, evt.target.value))
+        evt.target.value = ""
+        evt.target.parentNode.className = ""
+      }
+    }
+    if (evt.keyCode == 27) {
+      //escape
+      evt.target.value = ""
+      evt.target.parentNode.className = ""
+      setEditing(false)
+    }
+  }
+
+  useEffect(() => {
+    if(editing){
+      document.addEventListener('mousedown', handleClickOutside)
+    }
     inputEl.current.focus()
+
+  }, [editing])
+
+  const handleClickOutside = (e) => {
+    if(inputEl.current && inputEl.current.contains(e.target)){
+      return
+    } else {
+      setEditing(false)
+    }
   }
 
   return (
-    <li key={task.id} className={task.completed == "yes" ? "completed" : ""}>
+    <li key={task.id} className={task.completed == "yes" ? "completed" : editing ? 'editing' : ""} >
       <div className="view">
         <input
           readOnly
@@ -29,10 +66,9 @@ function Task(props) {
       </div>
       <input
         className="edit"
-        ref={inputEl} 
-        // placeholder={task.task}
+        ref={inputEl => inputEl && inputEl.focus()}
         defaultValue={task.task}
-        onKeyDown={(evt) => props.keyDownHandler(evt, task.id)} //edit task
+        onKeyDown={(evt) => keyDownHandler(evt, task.id)} //edit task
       />
     </li>
   )
