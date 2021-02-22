@@ -6,9 +6,10 @@ import { fetchTodos, toggleTheTask, addNewTodos, deleteThisTodo } from "../actio
 
 
 
-function AddTodo (props) {
+function AddTodo(props) {
 
   function handleClick(e) {
+    console.log("clicked")
     props.dispatch(toggleTheTask(Number(e.target.getAttribute("id"))))
   }
 
@@ -17,8 +18,9 @@ function AddTodo (props) {
   }, []);
 
   useEffect(() => {
+// console.log(props.todos)
     setTodos(props.todos)
-  }, [props.todos.length]);
+  }, [JSON.stringify(props.todos)]);
 
 
   let count = 0;
@@ -37,7 +39,6 @@ function AddTodo (props) {
     }
   }
 
-
   function handleDeleteTodo(e) {
     // console.log(e.target.dataset.id)
     props.dispatch(deleteThisTodo(Number(e.target.dataset.id)));
@@ -51,7 +52,6 @@ function AddTodo (props) {
       }
     }
   }
-
 
   const [todos, setTodos] = useState([]);
 
@@ -77,7 +77,6 @@ function AddTodo (props) {
         </div>
         <ul className="todo-list">
           {todos.map(todo => {
-
             return (
               <li key={todo.id}  className={todo.completed === 1 ? "completed" : ""}>
               <div className="view">
@@ -94,7 +93,7 @@ function AddTodo (props) {
         <span className="todo-count"><strong>{count}</strong> item left</span>
         <ul className="filters">
           <li>
-            <a onClick={() => showAllTodos()} className="selected" href="#/">All</a>
+            <a  onClick={() => showAllTodos()} className="selected" href="#/">All</a>
           </li>
           <li>
             <a onClick={() => showActiveTodos()} href="#/active">Active</a>
