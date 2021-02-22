@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { connect } from 'react-redux'
 
 import  { fetchTasks, delTask, uptTask } from '../actions'
 
 const ListTodos = (props) => {
+  
+  const inputRef = useRef(null)
 
   useEffect(() => {
     props.dispatch(fetchTasks())
@@ -12,15 +14,22 @@ const ListTodos = (props) => {
   const handleDelete = id => {
     props.dispatch(delTask(id))
   }
-
+  
   const dblClickHandler = event => {
     event.target.parentNode.parentNode.className = "editing"
+    inputRef.current.focus()
   }
-
+  
   const keyHandler = (event, id) => {
     if(event.keyCode == 13) {
       props.dispatch(uptTask(id, event.target.value))
       event.target.value = ""
+      event.target.parentNode.className = ""
+    }
+  }
+  
+  const escHandler = event => {
+    if(event.keyCode == 27) {
       event.target.parentNode.className = ""
     }
   }
@@ -34,7 +43,7 @@ const ListTodos = (props) => {
               <li key={task.id} className="completed">
               <div className="view">
                 <input className="toggle" type="checkbox" />
-                <label onDoubleClick={dblClickHandler}>{task.task}</label>
+                <label>{task.task}</label>
                 <button className="destroy" onClick={() => handleDelete(task.id)}></button>
               </div>
               <input className="edit" />
@@ -48,7 +57,12 @@ const ListTodos = (props) => {
                 <label onDoubleClick={dblClickHandler}>{task.task}</label>
                 <button className="destroy" onClick={() => handleDelete(task.id)}></button>
               </div>
-              <input className="edit" onKeyDown={(event) => keyHandler(event, task.id)} />
+              <input className="edit" 
+                ref={inputRef}
+                defaultValue={task.task} 
+                onKeyDown={(event) => keyHandler(event, task.id)} 
+                onKeyDown={(event) => escHandler(event)} 
+              />
             </li>
           )
         }})} 
@@ -64,3 +78,5 @@ const mapStateToProps = (globalState) => {
 }
 
 export default connect(mapStateToProps)(ListTodos)
+
+// ref={input => input && input.focus()}
