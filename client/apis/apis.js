@@ -8,3 +8,15 @@ export function getTasks () {
     return res.body
   })
 }
+
+export function addTask () {
+  return request.get(rootUrl + '/tasks')
+  .then(res => {
+    return res.body
+  })
+}
+/*
+ADD
+UPDATE
+DELETE
+/*
