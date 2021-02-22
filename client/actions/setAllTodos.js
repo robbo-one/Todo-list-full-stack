@@ -47,15 +47,15 @@ export function setNewTodo(task) {
 export function updateTodo(id, updatedTodo) {
   return (dispatch) => {
     return updateATodo(id, updatedTodo) //calls updateATodo function in API, then waits (async)
-      .then((id, updatedTodo) => {
-        dispatch(setUpdatedTodo(id, updatedTodo)); //thunk conditional dispatch. When data received back from api it calls setUpdatedTodo func (in actions) which dispatches UPDATE_TODO action to reducer to update state
+      .then((updatedTodo) => {
+        dispatch(setUpdatedTodo(updatedTodo)); //thunk conditional dispatch. When data received back from api it calls setUpdatedTodo func (in actions) which dispatches UPDATE_TODO action to reducer to update state
       });
   };
 }
-export function setUpdatedTodo(id, updatedTodo) {
+export function setUpdatedTodo(updatedTodo) {
+  console.log(updatedTodo)
   return {
     type: "UPDATE_TODO", //action sent to reducer which will update state with updated todo
-    id,
     updatedTodo,
   };
 }

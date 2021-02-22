@@ -37,8 +37,8 @@ router.post("/", (req, res) => {
 //Patch route request to update todo. Req body includes ?id, task, priority, completed
 router.patch("/:id", (req, res) => {
   db.updateTodo(req.params.id, req.body) //form only has title and content
-    .then((todos) => {
-      res.json(todos);
+    .then((todo) => {
+      res.json(todo);
     });
 });
 

@@ -22,7 +22,13 @@ const reducer = (state = initialState, action) => {
     case "ADD_TODO":
       return [...state, action.task];
     case "UPDATE_TODO":
-      return [...state, action.updatedtask];
+      const stateArray = state.map((todo) => {
+        if (todo.id === action.updatedTodo.id) {
+          todo.task = action.updatedTodo.task;
+        }
+        return todo;
+      });
+      return stateArray;
     default:
       return state;
   }

@@ -9,18 +9,20 @@ export function addTodos(task) {
     .then((res) => {
       //console.log(res) //shows single new object with key value pairs
       //data received back from routes as res.json
-      return res.body
-    })
+      return res.body;
+    });
 }
 
 export function updateATodo(id, updatedTodo) {
+  const newTodo = { task: updatedTodo }
+  console.log(newTodo)
   return request
-    .post(rootUrl + "/todos/:id") //goes to routes
-    .send(id, updatedTodo)
-    .then((res) => {//async, waits for response from route
-      //console.log(res) 
+    .patch(rootUrl + "/todos/" + id) //goes to routes
+    .send(newTodo) //converts from string to object
+    .then((res) => {
+      //async, waits for response from route
+      //console.log(res)
       //data received back from routes as res.json
-      return res.body
-    })
+      return res.body;
+    });
 }
-

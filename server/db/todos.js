@@ -17,7 +17,7 @@ function getTodos(db = connection) {
 }
 
 function getTodoById(id, db = connection) {
-  return db("todos").where("todos.id", id);
+  return db("todos").where("todos.id", id).first()
 }
 
 //Append new todo to database 
@@ -41,7 +41,7 @@ function updateTodo(id, updatedTodo, db = connection) {
     .update(updatedTodo)
     .where("todos.id", id)
     .then(() => { //does this give an id?
-      return getTodos(); //jumps back to routes
+      return getTodoById(id); //jumps back to routes
     });
 }
 
