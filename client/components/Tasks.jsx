@@ -11,7 +11,7 @@ const Tasks = (props) => {
     return (
         <>
             <ul>
-                {props.Tasks.map(task => {
+                {props.tasks.map(task => {
                     return <li key={task.id}>{task.task}</li>
                 })}
             </ul>
