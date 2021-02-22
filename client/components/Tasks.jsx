@@ -16,6 +16,7 @@ function Tasks(props) {
 
   const doubleClickHandler = (evt) => {
     evt.target.parentNode.parentNode.className = "editing"
+    
   }
 
   const keyDownHandler = (evt, id) => {
