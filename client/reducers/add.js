@@ -5,7 +5,7 @@ const initialState = []
 const reducerAdd = (state = initialState, action) => {
   switch (action.type) {
     case ADD_A_TASK:
-      return action.tasks
+      return [...state, action.task]
     default:
       return state
   }

@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
 import AddTodo from './AddTodo'
-import { listAllTheTasks } from '../actions/actions'
+import List from './List'
+import { fetchTasks } from '../actions/actions'
 import { connect } from 'react-redux'
 
-function App () {
+function App (props) {
   useEffect(() => {
-
+    props.dispatch(fetchTasks())
   }, [])
 
   return (
@@ -13,6 +14,7 @@ function App () {
       <header className="header">
         <h1>To Do</h1>
         <AddTodo />
+        <List />
       </header>
       <section className="main"></section>
       <footer className="footer"></footer>
