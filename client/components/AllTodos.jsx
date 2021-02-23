@@ -2,11 +2,15 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchAllTodos } from "../actions/setAllTodos";
 import ATodo from "./ATodo"
+import DeleteTodo from "./DeleteTodo"
 
 const AllTodos = (props) => {
   useEffect(() => {
     props.dispatch(fetchAllTodos()); //function call dispatched to action
   }, []);
+
+
+ 
 
   
   return (
@@ -31,6 +35,8 @@ const AllTodos = (props) => {
     </>
   );
 };
+
+
 
 const mapStateToProps = (globalState) => {
   return {
