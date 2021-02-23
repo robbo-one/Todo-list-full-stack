@@ -23,12 +23,6 @@ export function fetchTasks () {
   }
 }
 
-/*
-ADD
-UPDATE
-DELETE
-*/
-
 export function addNewTask (detail, completed) {
   return {
     type: ADD_A_TASK,
@@ -37,7 +31,15 @@ export function addNewTask (detail, completed) {
   }
 }
 
-
+export function fetchNew (task) {
+  return dispatch => {
+    return addTask(task)
+    .then(() => {
+      dispatch(fetchTasks())
+      return null
+    })
+  }
+}
 
 /*
 {

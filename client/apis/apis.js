@@ -16,7 +16,7 @@ export function addTask (detail) {
   .set(acceptJsonHeader)
   .send(detail)
   .then(res => res.body)
-  .catch(logError)
+  .catch(err => console.log(err.message))
   }
 
 /*
