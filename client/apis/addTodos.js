@@ -14,8 +14,8 @@ export function addTodos(task) {
 }
 
 export function updateATodo(id, updatedTodo) {
-  const newTodo = { task: updatedTodo }
-  console.log(newTodo)
+  const newTodo = { task: updatedTodo };
+  console.log(newTodo);
   return request
     .patch(rootUrl + "/todos/" + id) //goes to routes
     .send(newTodo) //converts from string to object
@@ -24,5 +24,17 @@ export function updateATodo(id, updatedTodo) {
       //console.log(res)
       //data received back from routes as res.json
       return res.body;
+    });
+}
+export function deleteATodo(id) {
+  console.log("inside the API function");
+  console.log(id); //got to here
+  //const idToDelete = { task: id };
+  //console.log({ task: id });
+  return request
+    .delete(rootUrl + "/todos/")
+    .send({id: id})
+    .then((res) => {
+      return null
     });
 }

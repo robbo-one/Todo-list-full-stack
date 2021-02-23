@@ -4,6 +4,8 @@
 import React, { useState } from "react";
 import { updateTodo } from "../actions/setAllTodos";
 import { connect } from "react-redux";
+import { deleteThisTodo } from "../actions/setAllTodos"
+
 
 const ATodo = (props) => {
   const [updatedTodo, setUpdatedTodo] = useState(props.todo.task);
@@ -30,9 +32,9 @@ const ATodo = (props) => {
     }
   };
 
-  const deleteATodo = () => {
-    //console.log("Delete a todo");
-    props.dispatch(deleteTodo(props.todo.id))
+  const deleteTodo = () => {
+    console.log("Delete todo");
+    props.dispatch(deleteThisTodo(props.todo.id))
   }
 
 
@@ -47,7 +49,7 @@ const ATodo = (props) => {
       <div className="view">
         <input className="toggle" type="checkbox" />
         <label onDoubleClick={() => handleDoubleClick()}>{updatedTodo}</label>
-        <button className="destroy" onClick={deleteATodo}></button>
+        <button className="destroy" onClick={() => deleteTodo()}></button>
       </div>
       <input
         className="edit"

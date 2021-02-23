@@ -1,6 +1,7 @@
 import { addTodos } from "../apis/addTodos";
 import { getAllTodos } from "../apis/allTodos";
 import { updateATodo } from "../apis/addTodos";
+import { deleteATodo } from "../apis/addTodos";
 
 //Note: Thunk conditional dispatch actions are marked below
 
@@ -53,9 +54,27 @@ export function updateTodo(id, updatedTodo) {
   };
 }
 export function setUpdatedTodo(updatedTodo) {
-  console.log(updatedTodo)
+  console.log(updatedTodo);
   return {
     type: "UPDATE_TODO", //action sent to reducer which will update state with updated todo
     updatedTodo,
   };
 }
+
+export function deleteThisTodo(id) {
+  console.log("inside the delete function");
+  return (dispatch) => {
+    return deleteATodo(id) //calls deleteATodofunction in api then waits (async)
+      // .then((deletedTodo) => {
+      //   dispatch(setDeletedTodo(deletedTodo));
+      // });
+  };
+}
+//this function will be completed
+// export function setDeletedTodo(deletedTodo) {
+//   return {
+//     type: "DELETE_TODO",
+//     deletedTodo,
+//   }
+
+
